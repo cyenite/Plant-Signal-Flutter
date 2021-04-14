@@ -1,0 +1,38 @@
+Apple Black Rot
+Apple Scab
+Cedar Apple Rust
+Cherry Powdery Mildew
+Grape Black Rot
+Grape Esca (Black Measles)
+Grape Leaf Blight
+Healthy Apple
+Healthy Blueberry
+Healthy Cherry
+Healthy Grape
+Healthy Maize
+Healthy Peach
+Healthy Pepper
+Healthy Potato
+Healthy Raspberry
+Healthy Soybean
+Healthy Strawberry
+Healthy Tomato
+Maize Common Rust
+Maize Gray Leaf Spot
+Maize Northern Leaf Blight
+Orange Citrus Greening (Haunglongbing)
+Peach Bacterial Spot
+Pepper Bacterial Spot
+Potato Early Blight
+Potato Late Blight
+Squash Powdery Mildew
+Strawberry Leaf Scorch
+Tomato Bacterial Spot
+Tomato Early Blight
+Tomato Late Blight
+Tomato Leaf Mold
+Tomato Mosaic Virus
+Tomato Septoria Leaf Spot
+Tomato Spider Mites
+Tomato Target Spot
+Tomato Yellow Leaf Curl Virus

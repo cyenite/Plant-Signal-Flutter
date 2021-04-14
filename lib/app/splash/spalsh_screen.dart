@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:ron_plant_detection/app/home/home_page.dart';
+import 'package:plant_signal/app/home/home_page.dart';
 
 class Splash extends StatefulWidget {
   @override

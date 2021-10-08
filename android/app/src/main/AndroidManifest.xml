@@ -3,7 +3,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="Ron"
+        android:label="Plant Signal"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/screen/WAAddCreditionalScreen.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/screen/WAAddCreditionalScreen.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
 
 class WAEditProfileScreen extends StatefulWidget {
   static String tag = '/WAEditProfileScreen';
@@ -73,25 +72,37 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
         body: Container(
           height: context.height(),
           width: context.width(),
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/walletApp/wa_bg.jpg'),
+                  fit: BoxFit.cover)),
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
             children: [
               Container(
                 margin: EdgeInsets.only(top: 80),
-                padding: EdgeInsets.only(top: 50, left: 16, right: 16, bottom: 16),
+                padding:
+                    EdgeInsets.only(top: 50, left: 16, right: 16, bottom: 16),
                 width: context.width(),
                 height: context.height(),
-                decoration: boxDecorationWithShadow(borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+                decoration: boxDecorationWithShadow(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30))),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Personal Information', style: boldTextStyle(size: 18)),
+                      Text('Personal Information',
+                          style: boldTextStyle(size: 18)),
                       16.height,
                       Container(
                         padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), border: Border.all(color: Colors.grey.withOpacity(0.2), width: 0.5)),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                                color: Colors.grey.withOpacity(0.2),
+                                width: 0.5)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -107,11 +118,12 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                               focus: fullNameFocusNode,
                             ),
                             16.height,
-                            Text('Contact Number', style: boldTextStyle(size: 14)),
+                            Text('Contact Number',
+                                style: boldTextStyle(size: 14)),
                             8.height,
                             AppTextField(
                               decoration: waInputDecoration(
-                                hint: 'Enter your full name here',
+                                hint: 'Phone number with country code',
                               ),
                               textFieldType: TextFieldType.PHONE,
                               keyboardType: TextInputType.phone,
@@ -119,64 +131,6 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                               focus: contactNumberFocusNode,
                             ),
                             16.height,
-                            Text('Date of birth', style: boldTextStyle(size: 14)),
-                            8.height,
-                            Row(
-                              children: [
-                                DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: waInputDecoration(hint: "Date"),
-                                  items: List.generate(31, (index) {
-                                    return DropdownMenuItem(child: Text('${index + 1}', style: secondaryTextStyle()), value: index + 1);
-                                  }),
-                                  onChanged: (value) {},
-                                ).expand(),
-                                16.width,
-                                DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: waInputDecoration(hint: "Month"),
-                                  items: waMonthList.map((String? value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value!, style: secondaryTextStyle()),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    //
-                                  },
-                                ).expand(),
-                                16.width,
-                                DropdownButtonFormField(
-                                  isExpanded: true,
-                                  decoration: waInputDecoration(hint: "Year"),
-                                  items: waYearList.map((String? value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value!, style: secondaryTextStyle()),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    //
-                                  },
-                                ).expand(),
-                              ],
-                            ),
-                            16.height,
-                            Text('Gender', style: boldTextStyle()),
-                            8.height,
-                            DropdownButtonFormField(
-                              isExpanded: true,
-                              decoration: waInputDecoration(hint: "Select your gender"),
-                              items: <String>['Female', 'Male'].map((String value) {
-                                return new DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value, style: secondaryTextStyle()),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                //
-                              },
-                            ),
                           ],
                         ),
                       ),
@@ -184,7 +138,8 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                       AppButton(
                         color: WAPrimaryColor,
                         width: context.width(),
-                        child: Text('Continue', style: boldTextStyle(color: Colors.white)),
+                        child: Text('Continue',
+                            style: boldTextStyle(color: Colors.white)),
                         onTap: () {
                           if (widget.isEditProfile) {
                             finish(context);
@@ -192,7 +147,9 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                             WAAddCredentialScreen().launch(context);
                           }
                         },
-                      ).cornerRadiusWithClipRRect(30).paddingOnly(left: context.width() * 0.1, right: context.width() * 0.1),
+                      ).cornerRadiusWithClipRRect(30).paddingOnly(
+                          left: context.width() * 0.1,
+                          right: context.width() * 0.1),
                     ],
                   ),
                 ),
@@ -204,7 +161,9 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                     margin: EdgeInsets.only(right: 8),
                     height: 110,
                     width: 110,
-                    decoration: BoxDecoration(color: WAPrimaryColor.withOpacity(0.2), shape: BoxShape.circle),
+                    decoration: BoxDecoration(
+                        color: WAPrimaryColor.withOpacity(0.2),
+                        shape: BoxShape.circle),
                     child: Icon(Icons.person, color: WAPrimaryColor, size: 60),
                   ),
                   Positioned(
@@ -212,7 +171,8 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                     child: Container(
                       padding: EdgeInsets.all(6),
                       child: Icon(Icons.edit, color: Colors.white, size: 20),
-                      decoration: BoxDecoration(color: WAPrimaryColor, shape: BoxShape.circle),
+                      decoration: BoxDecoration(
+                          color: WAPrimaryColor, shape: BoxShape.circle),
                     ),
                   ),
                 ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ron_plant_detection/main/utils/shimmer/shimmer.dart';
+import 'package:plant_signal/main/utils/shimmer/shimmer.dart';
 
 class SliderButton extends StatefulWidget {
   ///To make button more customizable add your child widget

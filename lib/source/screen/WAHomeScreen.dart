@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WACardComponent.dart';
-import 'package:ron_plant_detection/source/component/WAOperationComponent.dart';
-import 'package:ron_plant_detection/source/component/WATransactionComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/screen/WAOperatorsScreen.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/component/WACardComponent.dart';
+import 'package:plant_signal/source/component/WAOperationComponent.dart';
+import 'package:plant_signal/source/component/WATransactionComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/screen/WAOperatorsScreen.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
 
 class WAHomeScreen extends StatefulWidget {
   static String tag = '/WAHomeScreen';
@@ -41,7 +41,9 @@ class WAHomeScreenState extends State<WAHomeScreen> {
         height: context.height(),
         width: context.width(),
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage('images/walletApp/wa_bg.jpg'),
+              fit: BoxFit.cover),
         ),
         child: Container(
           child: SingleChildScrollView(
@@ -91,9 +93,11 @@ class WAHomeScreenState extends State<WAHomeScreen> {
                       ),
                     )
                   ],
-                ).paddingOnly(left: 16, right: 16,bottom: 16),
-                Text('Hey Antor,', style: secondaryTextStyle()).paddingOnly(left: 16, right: 16),
-                Text('Welcome Back', style: boldTextStyle(size: 20)).paddingOnly(left: 16, right: 16),
+                ).paddingOnly(left: 16, right: 16, bottom: 16),
+                Text('Hello', style: secondaryTextStyle())
+                    .paddingOnly(left: 16, right: 16),
+                Text('Welcome Back', style: boldTextStyle(size: 20))
+                    .paddingOnly(left: 16, right: 16),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Wrap(
@@ -108,7 +112,7 @@ class WAHomeScreenState extends State<WAHomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Operators', style: boldTextStyle(size: 20)),
+                    Text('Supported Plants', style: boldTextStyle(size: 20)),
                     Icon(Icons.play_arrow, color: Colors.grey).onTap(() {
                       WAOperatorsScreen().launch(context);
                     }),
@@ -120,8 +124,11 @@ class WAHomeScreenState extends State<WAHomeScreen> {
                     direction: Axis.horizontal,
                     spacing: 16,
                     children: operationsList.map((operationModel) {
-                      return WAOperationComponent(itemModel: operationModel).onTap(() {
-                        operationModel.widget != null ? operationModel.widget.launch(context) : toast(operationModel.title);
+                      return WAOperationComponent(itemModel: operationModel)
+                          .onTap(() {
+                        operationModel.widget != null
+                            ? operationModel.widget.launch(context)
+                            : toast(operationModel.title);
                       });
                     }).toList(),
                   ).paddingAll(16),
@@ -130,14 +137,15 @@ class WAHomeScreenState extends State<WAHomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Transactions', style: boldTextStyle(size: 20)),
+                    Text('Your Activity', style: boldTextStyle(size: 20)),
                     Icon(Icons.play_arrow, color: Colors.grey),
                   ],
                 ).paddingOnly(left: 16, right: 16),
                 16.height,
                 Column(
                   children: transactionList.map((transactionItem) {
-                    return WATransactionComponent(transactionModel: transactionItem);
+                    return WATransactionComponent(
+                        transactionModel: transactionItem);
                   }).toList(),
                 ),
               ],

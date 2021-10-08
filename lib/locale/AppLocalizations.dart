@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/locale/LanguageEn.dart';
-import 'package:ron_plant_detection/locale/LanguageFr.dart';
-import 'package:ron_plant_detection/locale/Languages.dart';
+import 'package:plant_signal/locale/LanguageEn.dart';
+import 'package:plant_signal/locale/LanguageFr.dart';
+import 'package:plant_signal/locale/Languages.dart';
 
 import 'LanguageAr.dart';
 import 'LanguageHi.dart';
@@ -27,7 +27,8 @@ class AppLocalizations extends LocalizationsDelegate<BaseLanguage> {
   }
 
   @override
-  bool isSupported(Locale locale) => LanguageDataModel.languages().contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      LanguageDataModel.languages().contains(locale.languageCode);
 
   @override
   bool shouldReload(LocalizationsDelegate<BaseLanguage> old) => false;

@@ -249,7 +249,7 @@ mixin _$AppStore on AppStoreBase, Store {
   final _$setWebListingAsyncAction = AsyncAction('AppStoreBase.setWebListing');
 
   @override
-  Future<dynamic> setWebListing(List<dynamic> data) {
+  Future<dynamic> setWebListing(List<ProTheme> data) {
     return _$setWebListingAsyncAction.run(() => super.setWebListing(data));
   }
 

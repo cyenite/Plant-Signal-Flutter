@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(ron_plant_detection LANGUAGES CXX)
+project(plant_signal LANGUAGES CXX)
 
-set(BINARY_NAME "ron_plant_detection")
+set(BINARY_NAME "plant_signal")
 
 cmake_policy(SET CMP0063 NEW)
 

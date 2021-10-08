@@ -1,4 +1,4 @@
-# ron_plant_detection
+# plant_signal
 
 A new Flutter application.
 

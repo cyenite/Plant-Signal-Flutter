@@ -2,13 +2,11 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WACardComponent.dart';
-import 'package:ron_plant_detection/source/component/WATransactionComponent.dart';
-import 'package:ron_plant_detection/source/component/WAWalletUserListComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/component/WACardComponent.dart';
+import 'package:plant_signal/source/component/WATransactionComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
 
 class WAWalletScreen extends StatefulWidget {
   static String tag = '/WAWalletScreen';
@@ -18,7 +16,6 @@ class WAWalletScreen extends StatefulWidget {
 }
 
 class WAWalletScreenState extends State<WAWalletScreen> {
-  List<WAWalletUserModel> walletUserList = waWalletUserList();
   List<WACardModel> walletList = waCardList();
   List<WATransactionModel> transactionList = waTransactionList();
 
@@ -53,24 +50,12 @@ class WAWalletScreenState extends State<WAWalletScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text('Wallets',
+          title: Text('Global Statistics',
               style: boldTextStyle(color: Colors.black, size: 20)),
           centerTitle: true,
           automaticallyImplyLeading: false,
           elevation: 0.0,
           brightness: Brightness.dark,
-          actions: [
-            Container(
-              height: 35,
-              width: 35,
-              margin: EdgeInsets.only(right: 16, top: 16),
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-              decoration: boxDecorationRoundedWithShadow(8),
-              child: waCommonCachedNetworkImage(
-                  'images/walletApp/wa_add_icon.png',
-                  fit: BoxFit.fill),
-            ),
-          ],
         ),
         body: Container(
           height: context.height(),
@@ -113,14 +98,6 @@ class WAWalletScreenState extends State<WAWalletScreen> {
                           borderRadius: BorderRadius.circular(8.0))),
                 ),
                 30.height,
-                Align(
-                        alignment: Alignment.topLeft,
-                        child: Text('Send Money to',
-                            style: boldTextStyle(size: 20)))
-                    .paddingLeft(16),
-                16.height,
-                WAWalletUserListComponent(walletUserList: walletUserList),
-                16.height,
                 Align(
                         alignment: Alignment.topLeft,
                         child: Text('Transactions',

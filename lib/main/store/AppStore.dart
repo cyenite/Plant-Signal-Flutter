@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/locale/Languages.dart';
-import 'package:ron_plant_detection/main/model/AppModel.dart';
-import 'package:ron_plant_detection/main/utils/AppColors.dart';
-import 'package:ron_plant_detection/main/utils/AppConstant.dart';
+import 'package:plant_signal/locale/Languages.dart';
+import 'package:plant_signal/main/model/AppModel.dart';
+import 'package:plant_signal/main/utils/AppColors.dart';
+import 'package:plant_signal/main/utils/AppConstant.dart';
 
 import '../../main.dart';
 
@@ -20,7 +20,7 @@ abstract class AppStoreBase with Store {
   bool isHover = false;
 
   @observable
-  List<ProTheme> webListingList = [];
+  List<dynamic> webListingList = [];
 
   @observable
   Color? scaffoldBackground;

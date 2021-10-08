@@ -1,4 +1,4 @@
-import 'package:ron_plant_detection/locale/Languages.dart';
+import 'package:plant_signal/locale/Languages.dart';
 
 class LanguageHi extends BaseLanguage {
   @override

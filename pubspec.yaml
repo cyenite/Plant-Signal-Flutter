@@ -21,6 +21,7 @@ dependencies:
   font_awesome_flutter: ^9.0.0
   nb_utils: ^4.4.8
   intl: ^0.17.0
+  flutter_greetings: ^1.0.1
 
   # Common
   share: ^2.0.4
@@ -56,5 +57,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/
+    - images/walletApp/
+    - images/crops/
     - fonts/
     - assets/

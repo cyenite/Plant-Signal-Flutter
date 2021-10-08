@@ -1,4 +1,4 @@
-package dems.apps.ron_plant_detection
+package com.plant.plant_signal
 
 import io.flutter.embedding.android.FlutterActivity
 

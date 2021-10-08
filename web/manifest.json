@@ -1,6 +1,6 @@
 {
-    "name": "ron_plant_detection",
-    "short_name": "ron_plant_detection",
+    "name": "plant_signal",
+    "short_name": "plant_signal",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

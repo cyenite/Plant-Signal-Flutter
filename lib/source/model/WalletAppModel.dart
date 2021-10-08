@@ -17,13 +17,20 @@ class WARecentPayeesModel {
 }
 
 class WACardModel {
+  String? title;
   String? image;
   String? balance;
   String? cardNumber;
   String? date;
   Color? color;
 
-  WACardModel({this.image, this.balance, this.cardNumber, this.date, this.color});
+  WACardModel(
+      {this.title,
+      this.image,
+      this.balance,
+      this.cardNumber,
+      this.date,
+      this.color});
 }
 
 class WAOperationsModel {
@@ -43,7 +50,8 @@ class WATransactionModel {
   String? time;
   String? balance;
 
-  WATransactionModel({this.image, this.color, this.title, this.name, this.time, this.balance});
+  WATransactionModel(
+      {this.image, this.color, this.title, this.name, this.time, this.balance});
 }
 
 class WABillPayModel {
@@ -69,12 +77,17 @@ class WAWalletUserModel {
   WAWalletUserModel({this.image});
 }
 
-class WAVoucherModel{
+class WAVoucherModel {
   String? image;
   String? discountText;
   String? title;
   String? expireTime;
   String? pointsText;
 
-  WAVoucherModel({this.image, this.discountText, this.title, this.expireTime, this.pointsText});
+  WAVoucherModel(
+      {this.image,
+      this.discountText,
+      this.title,
+      this.expireTime,
+      this.pointsText});
 }

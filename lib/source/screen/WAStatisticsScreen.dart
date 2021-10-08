@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WACategoriesComponent.dart';
-import 'package:ron_plant_detection/source/component/WAStatisticsChartComponent.dart';
-import 'package:ron_plant_detection/source/component/WAStatisticsComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/component/WACategoriesComponent.dart';
+import 'package:plant_signal/source/component/WAStatisticsChartComponent.dart';
+import 'package:plant_signal/source/component/WAStatisticsComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
 
 class WAStatisticScreen extends StatefulWidget {
   static String tag = '/WAStatisticScreen';
@@ -39,7 +39,7 @@ class WAStatisticScreenState extends State<WAStatisticScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text('Statistics',
+          title: Text('Detection Statistics',
               style: boldTextStyle(color: Colors.black, size: 20)),
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -90,7 +90,7 @@ class WAStatisticScreenState extends State<WAStatisticScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Categories', style: boldTextStyle(size: 20)),
+                    Text('Popular Detections', style: boldTextStyle(size: 20)),
                     Icon(Icons.play_arrow, color: Colors.grey),
                   ],
                 ).paddingOnly(left: 16, right: 16),

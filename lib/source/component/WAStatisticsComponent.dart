@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
 
 class WAStatisticsComponent extends StatefulWidget {
   static String tag = '/WAStatisticsComponent';
@@ -31,15 +31,15 @@ class WAStatisticsComponentState extends State<WAStatisticsComponent> {
     return Row(
       children: [
         waStatisticsWidget(
-                title: "Income",
-                amount: "\$50,20555",
+                title: "Successful",
+                amount: "50,205",
                 image: 'images/walletApp/wa_up_right.png',
                 color: Color(0xFF6C56F9))
             .expand(),
         16.width,
         waStatisticsWidget(
-                title: "Spent",
-                amount: "\$21,2455",
+                title: "Unsuccessful",
+                amount: "1,245",
                 image: 'images/walletApp/wa_down_left.png',
                 color: Color(0xFFFF7426))
             .expand(),

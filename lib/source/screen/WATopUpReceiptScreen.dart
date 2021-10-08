@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WASendViaComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/screen/WADashboardScreen.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
-import 'package:ron_plant_detection/source/utils/WAMultiplePointedEdgeClipper.dart';
-import 'package:ron_plant_detection/source/utils/WAMySeperator.dart';
+import 'package:plant_signal/source/component/WASendViaComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/screen/WADashboardScreen.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WAMultiplePointedEdgeClipper.dart';
+import 'package:plant_signal/source/utils/WAMySeperator.dart';
 
 class WATopUpReceiptScreen extends StatefulWidget {
   static String tag = '/WATopUpReceiptScreen';

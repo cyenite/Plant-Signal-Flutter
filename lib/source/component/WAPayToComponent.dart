@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WAPaymentCompeteDialog.dart';
-import 'package:ron_plant_detection/source/component/WASendViaComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
-import 'package:ron_plant_detection/source/utils/widgets/slider.dart';
+import 'package:plant_signal/source/component/WAPaymentCompeteDialog.dart';
+import 'package:plant_signal/source/component/WASendViaComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/utils/widgets/slider.dart';
 
 class WAPayToComponent extends StatefulWidget {
   static String tag = '/WAPayToComponent';

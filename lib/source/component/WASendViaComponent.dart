@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
 
 class WASendViaComponent extends StatefulWidget {
   static String tag = '/WASendViaComponent';
@@ -38,16 +38,23 @@ class WASendViaComponentState extends State<WASendViaComponent> {
     return Row(
       children: [
         Container(
-          decoration: boxDecorationWithRoundedCorners(borderRadius: BorderRadius.circular(4), backgroundColor: widget.item!.color!),
+          decoration: boxDecorationWithRoundedCorners(
+              borderRadius: BorderRadius.circular(4),
+              backgroundColor: widget.item!.color!),
           padding: EdgeInsets.all(4),
           width: 60,
           height: 40,
-          child: waCommonCachedNetworkImage('${widget.item!.image}', fit: BoxFit.fill, color: Colors.white),
+          child: waCommonCachedNetworkImage('${widget.item!.image}',
+              fit: BoxFit.fill, color: Colors.white),
         ),
         16.width,
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text('Bank Visa Card', style: boldTextStyle(size: 14), maxLines: 1), Text(widget.item!.cardNumber.validate(), style: secondaryTextStyle(size: 12))],
+          children: [
+            Text('Bank Visa Card', style: boldTextStyle(size: 14), maxLines: 1),
+            Text(widget.item!.cardNumber.validate(),
+                style: secondaryTextStyle(size: 12))
+          ],
         ),
       ],
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/screen/WAWalkThroughScreen.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
+import 'package:plant_signal/source/screen/WAWalkThroughScreen.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
 
 class WASplashScreen extends StatefulWidget {
   static String tag = '/WASplashScreen';
@@ -46,7 +46,7 @@ class WASplashScreenState extends State<WASplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/walletApp/wa_app_logo.png',
+              'images/plantlogo.png',
               color: Colors.white,
               fit: BoxFit.cover,
               height: 100,

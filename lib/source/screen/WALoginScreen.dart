@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/screen/WARegisterScreen.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/screen/WARegisterScreen.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
 
 import 'WAEditProfileScreen.dart';
 
@@ -194,7 +194,7 @@ class WALoginScreenState extends State<WALoginScreen> {
                       width: 100,
                       decoration: boxDecorationRoundedWithShadow(30),
                       child: Image.asset(
-                        'images/walletApp/wa_app_logo.png',
+                        'images/plantlogo.png',
                         height: 60,
                         width: 60,
                         fit: BoxFit.cover,

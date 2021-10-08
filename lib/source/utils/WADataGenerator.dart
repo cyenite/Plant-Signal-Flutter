@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/screen/WABillPayScreen.dart';
-import 'package:ron_plant_detection/source/screen/WACreditCardScreen.dart';
-import 'package:ron_plant_detection/source/screen/WASendMoneyViaLoopScreen.dart';
-import 'package:ron_plant_detection/source/screen/WAVoucherScreen.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/screen/WABillPayScreen.dart';
+import 'package:plant_signal/source/screen/WACreditCardScreen.dart';
+import 'package:plant_signal/source/screen/WASendMoneyViaLoopScreen.dart';
+import 'package:plant_signal/source/screen/WAVoucherScreen.dart';
 
 List<String?> waMonthList = <String?>[
   "Jan",
@@ -68,20 +68,23 @@ List<WAWalkThroughModel> waWalkThroughList() {
 List<WACardModel> waCardList() {
   List<WACardModel> cardList = [];
   cardList.add(WACardModel(
-      balance: '\$12,00,000',
-      cardNumber: '123 985 7654327',
-      date: '03/23',
+      title: 'Supported Crops',
+      balance: '38',
+      cardNumber: 'Last Update: ',
+      date: '09/10/2021',
       color: Color(0xFF6C56F9)));
   cardList.add(WACardModel(
-      balance: '\$12,23,000',
-      cardNumber: '985 123 7654327',
-      date: '25/23',
-      color: Color(0xFFFF7426)));
-  cardList.add(WACardModel(
-      balance: '\$23,00,000',
-      cardNumber: '765 123 9854327',
-      date: '03/25',
+      title: 'Detection Status',
+      balance: 'Active',
+      cardNumber: 'Last Update: ',
+      date: DateTime.now().day.toString(),
       color: Color(0xFF26C884)));
+  cardList.add(WACardModel(
+      title: 'App Version',
+      balance: '4.0 Beta',
+      cardNumber: 'Last Update: ',
+      date: '01/10/2021',
+      color: Color(0xFFFF7426)));
   return cardList;
 }
 
@@ -89,52 +92,57 @@ List<WAOperationsModel> waOperationList() {
   List<WAOperationsModel> operationModel = [];
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
-    title: 'Transfer',
-    image: 'images/walletApp/wa_transfer.png',
+    title: 'Apples',
+    image: 'images/plantlogo.png',
     widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
-    title: 'Vouchers',
-    image: 'images/walletApp/wa_voucher.png',
+    title: 'Cherries',
+    image: 'images/plantlogo.png',
     widget: WAVoucherScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
-    title: 'Top Up',
-    image: 'images/walletApp/wa_ticket.png',
+    title: 'Grapes',
+    image: 'images/plantlogo.png',
     widget: WACreditCardScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF26C884),
-    title: 'Bill Pay',
-    image: 'images/walletApp/wa_bill_pay.png',
+    title: 'Maize',
+    image: 'images/plantlogo.png',
     widget: WABillPayScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
-    title: 'Rewards',
-    image: 'images/walletApp/wa_ticket.png',
+    title: 'Tomatoes',
+    image: 'images/plantlogo.png',
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF26C884),
-    title: 'Shopping',
-    image: 'images/walletApp/wa_bill_pay.png',
+    title: 'Potatoes',
+    image: 'images/plantlogo.png',
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
-    title: 'Tickets',
-    image: 'images/walletApp/wa_voucher.png',
+    title: 'Peach',
+    image: 'images/plantlogo.png',
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
-    title: 'Budgets',
-    image: 'images/walletApp/wa_voucher.png',
+    title: 'Strawberries',
+    image: 'images/plantlogo.png',
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
-    title: 'Request',
-    image: 'images/walletApp/wa_transfer.png',
+    title: 'Maize',
+    image: 'images/plantlogo.png',
+  ));
+  operationModel.add(WAOperationsModel(
+    color: Color(0xFFF13452),
+    title: 'Pepper',
+    image: 'images/plantlogo.png',
   ));
   return operationModel;
 }
@@ -143,18 +151,18 @@ List<WATransactionModel> waTransactionList() {
   List<WATransactionModel> transactionList = [];
   transactionList.add(WATransactionModel(
     color: Color(0xFFFF7426),
-    title: 'Send Money to',
-    image: 'images/walletApp/wa_bill_pay.png',
-    balance: '-\$20,000',
-    name: 'James',
+    title: 'Scanned an image from',
+    image: 'images/walletApp/wa_voucher.png',
+    balance: 'Failed',
+    name: 'Gallery',
     time: 'Today 5:30 PM',
   ));
   transactionList.add(WATransactionModel(
     color: Color(0xFF26C884),
-    title: 'Salary from',
+    title: 'Scanned an image from',
     image: 'images/walletApp/wa_voucher.png',
-    balance: '+\$50,000',
-    name: 'Unbox Digital',
+    balance: 'Successful',
+    name: 'Cam',
     time: 'Today 6:30 PM',
   ));
   return transactionList;
@@ -294,54 +302,19 @@ List<WACardModel> waSendViaCardList() {
   return list;
 }
 
-List<WAWalletUserModel> waWalletUserList() {
-  List<WAWalletUserModel> list = [];
-  list.add(WAWalletUserModel(
-      image:
-          "https://www.vrsiddhartha.ac.in/me/wp-content/uploads/learn-press-profile/4/172522ec1028ab781d9dfd17eaca4427.jpg"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://royalrajtravels.com/image/1613583503main-qimg-6291c3a117fc230c82785148baef7eed.jpg"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5yt4pfdz3-lacajgUY5xuRuciElEaMZa9luc29Vgx2oVLDQceaFmxgcUXRzU-IfTZcWA&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXs_iIewEiaZ3tXb6n6VgaUIONS0B0HjwsqcvA3-EnnaNm0BwX216u2dZl2QTHnP7VOIU&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7wtiaB5F3B2oaF5699EJCNEtPnjD57ERWKTMjN0h-gpRxrFQ1u68HzFFT3eYJFFNLr4&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7wtiaB5F3B2oaF5699EJCNEtPnjD57ERWKTMjN0h-gpRxrFQ1u68HzFFT3eYJFFNLr4&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7wtiaB5F3B2oaF5699EJCNEtPnjD57ERWKTMjN0h-gpRxrFQ1u68HzFFT3eYJFFNLr4&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7wtiaB5F3B2oaF5699EJCNEtPnjD57ERWKTMjN0h-gpRxrFQ1u68HzFFT3eYJFFNLr4&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7wtiaB5F3B2oaF5699EJCNEtPnjD57ERWKTMjN0h-gpRxrFQ1u68HzFFT3eYJFFNLr4&usqp=CAU"));
-  list.add(WAWalletUserModel(
-      image:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH7wtiaB5F3B2oaF5699EJCNEtPnjD57ERWKTMjN0h-gpRxrFQ1u68HzFFT3eYJFFNLr4&usqp=CAU"));
-  return list;
-}
-
 List<WATransactionModel> waCategoriesList() {
   List<WATransactionModel> list = [];
   list.add(WATransactionModel(
       color: Color(0xFF26C884),
-      title: 'Clothes',
-      image: 'images/walletApp/wa_clothes.png',
-      balance: '-\$10,000',
+      title: 'Tomatoes',
+      image: 'images/walletApp/wa_food.png',
+      balance: 'Most successful',
       time: 'Today 12:30 PM'));
   list.add(WATransactionModel(
       color: Color(0xFFFF7426),
-      title: 'Grocery',
+      title: 'Cherry',
       image: 'images/walletApp/wa_food.png',
-      balance: '-\$8,000',
+      balance: 'Most Failures',
       time: 'Today 1:02 PM'));
   return list;
 }

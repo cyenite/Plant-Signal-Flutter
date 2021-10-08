@@ -3,7 +3,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
 
 import 'WADashboardScreen.dart';
 
@@ -53,7 +53,9 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
         height: context.height(),
         width: context.width(),
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage('images/walletApp/wa_bg.jpg'),
+              fit: BoxFit.cover),
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -71,7 +73,7 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
               ),
               16.height,
               Text(
-                'We have send a 4 digit verification code to your mail. Please enter the code below to verify it\'s you',
+                'We have sent a 4 digit verification code to your phone number and email. Please enter the code below to verify it\'s you',
                 style: secondaryTextStyle(),
                 textAlign: TextAlign.center,
               ),
@@ -104,7 +106,8 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                 children: [
                   Text('I didn\'t get the Code.', style: secondaryTextStyle()),
                   4.width,
-                  Text('Resend Code', style: boldTextStyle(color: WAPrimaryColor)),
+                  Text('Resend Code',
+                      style: boldTextStyle(color: WAPrimaryColor)),
                 ],
               ),
               16.height,
@@ -114,7 +117,8 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                     text: "Verify Me",
                     color: WAPrimaryColor,
                     textColor: Colors.white,
-                    shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    shapeBorder: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
                     width: context.width(),
                     onTap: () {
                       WADashboardScreen().launch(context);

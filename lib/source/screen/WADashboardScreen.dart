@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:ron_plant_detection/source/screen/WAHomeScreen.dart';
-import 'package:ron_plant_detection/source/screen/WAMyProfileScreen.dart';
-import 'package:ron_plant_detection/source/screen/WAQrScannerScreen.dart';
-import 'package:ron_plant_detection/source/screen/WAStatisticsScreen.dart';
-import 'package:ron_plant_detection/source/screen/WAWalletScreen.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
+import 'package:plant_signal/source/screen/WAHomeScreen.dart';
+import 'package:plant_signal/source/screen/WAMyProfileScreen.dart';
+import 'package:plant_signal/source/screen/WAQrScannerScreen.dart';
+import 'package:plant_signal/source/screen/WAStatisticsScreen.dart';
+import 'package:plant_signal/source/screen/WAWalletScreen.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:nb_utils/nb_utils.dart';
 
 class WADashboardScreen extends StatefulWidget {

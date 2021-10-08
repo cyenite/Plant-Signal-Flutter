@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WAOperationComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/component/WAOperationComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
 
 class WAOperatorsScreen extends StatefulWidget {
   static String tag = '/WAOperatorsScreen';
@@ -37,7 +37,7 @@ class WAOperatorsScreenState extends State<WAOperatorsScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         title: Text(
-          'Operators',
+          'Supported Crops',
           style: boldTextStyle(color: Colors.black, size: 20),
         ),
         leading: Container(

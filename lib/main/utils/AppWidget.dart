@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/integrations/utils/common.dart';
-import 'package:ron_plant_detection/main.dart';
-import 'package:ron_plant_detection/main/model/ListModels.dart';
+import 'package:plant_signal/main.dart';
+import 'package:plant_signal/main/model/ListModels.dart';
 
 import 'AppColors.dart';
 import 'AppConstant.dart';
@@ -55,26 +54,6 @@ BoxDecoration boxDecoration(
     border: Border.all(color: color),
     borderRadius: BorderRadius.all(Radius.circular(radius)),
   );
-}
-
-Future<List<LatLngAndGeohash>> getListOfLatLngAndGeoHash(
-    BuildContext context) async {
-  try {
-    final fakeList = await (loadDataFromJson(context));
-    List<LatLngAndGeohash> myPoints = [];
-    for (int i = 0; i < fakeList!.length; i++) {
-      //TODO Without NullSafety Geo coder
-      //final fakePoint = fakeList[i];
-      final p = LatLngAndGeohash(
-          //TODO Without NullSafety Geo coder
-          // LatLng(fakePoint["LATITUDE"], fakePoint["LONGITUDE"]),
-          );
-      myPoints.add(p);
-    }
-    return myPoints;
-  } catch (e) {
-    throw Exception(e.toString());
-  }
 }
 
 void changeStatusColor(Color color) async {

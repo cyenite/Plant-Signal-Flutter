@@ -92,10 +92,10 @@ BEGIN
             VALUE "CompanyName", "dems.apps" "\0"
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ron_plant_detection" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 dems.apps. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ron_plant_detection.exe" "\0"
-            VALUE "ProductName", "ron_plant_detection" "\0"
+            VALUE "InternalName", "plant_signal" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 com.plant. All rights reserved." "\0"
+            VALUE "OriginalFilename", "plant_signal.exe" "\0"
+            VALUE "ProductName", "plant_signal" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

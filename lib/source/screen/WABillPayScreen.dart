@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WAOperationComponent.dart';
-import 'package:ron_plant_detection/source/component/WAOrganizationComponent.dart';
-import 'package:ron_plant_detection/source/component/WAPayToComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
-import 'package:ron_plant_detection/source/utils/WAWidgets.dart';
+import 'package:plant_signal/source/component/WAOperationComponent.dart';
+import 'package:plant_signal/source/component/WAOrganizationComponent.dart';
+import 'package:plant_signal/source/component/WAPayToComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/utils/WAWidgets.dart';
 
 class WABillPayScreen extends StatefulWidget {
   static String tag = '/WABillPayScreen';
@@ -64,7 +64,10 @@ class WABillPayScreenState extends State<WABillPayScreen> {
           height: context.height(),
           width: context.width(),
           padding: EdgeInsets.only(top: 40),
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/walletApp/wa_bg.jpg'),
+                  fit: BoxFit.cover)),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -78,7 +81,8 @@ class WABillPayScreenState extends State<WABillPayScreen> {
                     alignment: WrapAlignment.center,
                     children: billPayList.map((item) {
                       return Container(
-                        padding: EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
+                        padding: EdgeInsets.only(
+                            top: 8, bottom: 8, left: 8, right: 8),
                         decoration: boxDecorationRoundedWithShadow(16),
                         alignment: AlignmentDirectional.center,
                         width: context.width() * 0.25,
@@ -101,7 +105,9 @@ class WABillPayScreenState extends State<WABillPayScreen> {
                       child: DropdownButtonFormField(
                         value: waOrgList[0],
                         isExpanded: true,
-                        decoration: waInputDecoration(bgColor: Colors.white, padding: EdgeInsets.symmetric(horizontal: 8)),
+                        decoration: waInputDecoration(
+                            bgColor: Colors.white,
+                            padding: EdgeInsets.symmetric(horizontal: 8)),
                         items: waOrgList.map((String? value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -118,7 +124,8 @@ class WABillPayScreenState extends State<WABillPayScreen> {
                 16.height,
                 Column(
                   children: waOrganizationList().map((item) {
-                    return WAOrganizationComponent(organizationModel: item).onTap(() {
+                    return WAOrganizationComponent(organizationModel: item)
+                        .onTap(() {
                       showModalBottomSheet(
                         isScrollControlled: true,
                         context: context,
@@ -127,7 +134,8 @@ class WABillPayScreenState extends State<WABillPayScreen> {
                           initialChildSize: 0.9,
                           maxChildSize: 0.9,
                           minChildSize: 0.3,
-                          builder: (context, scrollController) => SingleChildScrollView(
+                          builder: (context, scrollController) =>
+                              SingleChildScrollView(
                             controller: scrollController,
                             child: WAPayToComponent(organizationModel: item),
                           ),

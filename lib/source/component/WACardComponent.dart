@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/screen/WASendMoneyViaLoopScreen.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/screen/WASendMoneyViaLoopScreen.dart';
 
 class WACardComponent extends StatefulWidget {
   static String tag = '/WACardComponent';
@@ -47,20 +47,24 @@ class WACardComponentState extends State<WACardComponent> {
           Align(
             alignment: Alignment.topRight,
             child: ImageIcon(
-              AssetImage('images/walletApp/wa_visa.png'),
+              AssetImage('images/plantlogo.png'),
               size: 50,
               color: Colors.white,
             ),
           ),
-          Text('Balance', style: secondaryTextStyle(color: Colors.white60)),
+          Text('${widget.cardModel!.title!}',
+              style: secondaryTextStyle(color: Colors.white60)),
           8.height,
-          Text('${widget.cardModel!.balance!}', style: boldTextStyle(color: Colors.white, size: 18)),
+          Text('${widget.cardModel!.balance!}',
+              style: boldTextStyle(color: Colors.white, size: 18)),
           30.height,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('${widget.cardModel!.cardNumber!}', style: primaryTextStyle(color: Colors.white70)),
-              Text('${widget.cardModel!.date!}', style: primaryTextStyle(color: Colors.white70)),
+              Text('${widget.cardModel!.cardNumber!}',
+                  style: primaryTextStyle(color: Colors.white70)),
+              Text('${widget.cardModel!.date!}',
+                  style: primaryTextStyle(color: Colors.white70)),
             ],
           ),
         ],

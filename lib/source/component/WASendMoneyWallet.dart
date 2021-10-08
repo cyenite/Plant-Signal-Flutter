@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
 
 class WASendMoneyWallet extends StatefulWidget {
   static String tag = '/WASendMoneyWallet';

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/screen/WADashboardScreen.dart';
-import 'package:ron_plant_detection/source/screen/WAVerificationScreen.dart';
-import 'package:ron_plant_detection/source/utils/WAColors.dart';
+import 'package:plant_signal/source/screen/WADashboardScreen.dart';
+import 'package:plant_signal/source/screen/WAVerificationScreen.dart';
+import 'package:plant_signal/source/utils/WAColors.dart';
 
 class WAAddCredentialScreen extends StatefulWidget {
   static String tag = '/WAAddCredentialScreen';
@@ -56,20 +56,20 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'images/walletApp/wa_add_creditional.png',
+              'images/policy_illustration.png',
               width: context.width() * 0.80,
               height: context.width() * 0.80,
               fit: BoxFit.cover,
             ),
             8.height,
             Text(
-              'Add Creditionals to Loop',
+              'Plant Signal Privacy Statement',
               style: boldTextStyle(size: 20),
               textAlign: TextAlign.center,
             ),
             16.height,
             Text(
-              'Add your bank credit/debit card to Loop for manage your experience and set your budget for saving',
+              'Plant Signal Limited is committed to maintaining robust privacy protection for its users. We safeguard the information you provide to us  and use it to assist you in making informed decisions when using our service.',
               style: secondaryTextStyle(),
               textAlign: TextAlign.center,
             ),

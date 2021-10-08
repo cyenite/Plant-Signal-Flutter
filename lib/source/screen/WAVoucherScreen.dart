@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:ron_plant_detection/source/component/WAVoucherComponent.dart';
-import 'package:ron_plant_detection/source/model/WalletAppModel.dart';
-import 'package:ron_plant_detection/source/utils/WADataGenerator.dart';
+import 'package:plant_signal/source/component/WAVoucherComponent.dart';
+import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/utils/WADataGenerator.dart';
 
 class WAVoucherScreen extends StatefulWidget {
   static String tag = '/WAVoucherScreen';

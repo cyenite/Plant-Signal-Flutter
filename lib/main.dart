@@ -3,10 +3,15 @@ import 'package:flutter/services.dart';
 
 import 'app/splash/spalsh_screen.dart';
 
+/// This variable is used to get dynamic colors when theme mode is changed
+AppStore appStore = AppStore();
+BaseLanguage? language;
+
 void main() {
   runApp(MyApp());
 }
 
+/*
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,6 +23,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       home: Splash(),
+    );
+  }
+}
+*/
+
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Observer(
+      builder: (_) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: '$mainAppName${!isMobile ? ' ${platformName()}' : ''}',
+        home: WASplashScreen(),
+        theme: !appStore.isDarkModeOn ? AppThemeData.lightTheme : AppThemeData.darkTheme,
+        navigatorKey: navigatorKey,
+        scrollBehavior: SBehavior(),
+      ),
     );
   }
 }

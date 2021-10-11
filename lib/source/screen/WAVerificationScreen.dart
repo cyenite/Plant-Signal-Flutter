@@ -50,8 +50,8 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
         }),
       ),
       body: Container(
-        height: context.height(),
-        width: context.width(),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -84,7 +84,7 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                     height: 60,
                     child: OTPTextField(
                       length: 4,
-                      width: context.width(),
+                      width: MediaQuery.of(context).size.width,
                       fieldWidth: 60,
                       style: boldTextStyle(size: 24),
                       textFieldAlignment: MainAxisAlignment.spaceBetween,
@@ -112,14 +112,14 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
               ),
               16.height,
               SizedBox(
-                width: context.width() * 0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: AppButton(
                     text: "Verify Me",
                     color: WAPrimaryColor,
                     textColor: Colors.white,
                     shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
-                    width: context.width(),
+                    width: MediaQuery.of(context).size.width,
                     onTap: () {
                       WADashboardScreen().launch(context);
                     }),

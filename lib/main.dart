@@ -14,8 +14,9 @@ import 'main/utils/AppTheme.dart';
 AppStore appStore = AppStore();
 BaseLanguage? language;
 
-void main() {
-  Firebase.initializeApp();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

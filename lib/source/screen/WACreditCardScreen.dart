@@ -47,8 +47,8 @@ class WACreditCardScreenState extends State<WACreditCardScreen> {
         }),
       ),
       body: Container(
-        height: context.height(),
-        width: context.width(),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -70,21 +70,21 @@ class WACreditCardScreenState extends State<WACreditCardScreen> {
                   style: secondaryTextStyle()),
               16.height,
               SizedBox(
-                width: context.width() * 0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: AppButton(
                     text: "Top Up Credit Card",
                     color: WAPrimaryColor,
                     textColor: Colors.white,
                     shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
-                    width: context.width(),
+                    width: MediaQuery.of(context).size.width,
                     onTap: () {
                       WATopUPCardScreen().launch(context);
                     }),
               ),
               16.height,
               SizedBox(
-                width: context.width() * 0.5,
+                width: MediaQuery.of(context).size.width * 0.5,
                 child: AppButton(
                     text: "Top Up to Phone",
                     textColor: WAPrimaryColor,
@@ -92,7 +92,7 @@ class WACreditCardScreenState extends State<WACreditCardScreen> {
                       borderRadius: BorderRadius.circular(30),
                       side: BorderSide(color: WAPrimaryColor),
                     ),
-                    width: context.width(),
+                    width: MediaQuery.of(context).size.width,
                     onTap: () {
                       //
                     }),

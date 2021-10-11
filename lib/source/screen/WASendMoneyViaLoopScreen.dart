@@ -72,8 +72,8 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -90,7 +90,7 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
                 Container(
                   padding: EdgeInsets.all(8),
                   margin: EdgeInsets.only(left: 16, right: 16),
-                  width: context.width(),
+                  width: MediaQuery.of(context).size.width,
                   decoration: boxDecorationRoundedWithShadow(16),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(

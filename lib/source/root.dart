@@ -9,17 +9,14 @@ import 'controllers/user_controller.dart';
 class RootApp extends GetWidget<AuthController> {
   @override
   Widget build(BuildContext context) {
-    return GetX(
-      initState: (_) async {
-        Get.put<UserController>(UserController());
-      },
-      builder: (_) {
-        if (Get.find<AuthController>().user?.uid != null) {
-          return WADashboardScreen();
-        } else {
-          return WALoginScreen();
-        }
-      },
-    );
+    return GetX(initState: (_) async {
+      Get.put<UserController>(UserController());
+    }, builder: (_) {
+      if (Get.find<UserController>().user.isNull) {
+        return WADashboardScreen();
+      } else {
+        return WALoginScreen();
+      }
+    });
   }
 }

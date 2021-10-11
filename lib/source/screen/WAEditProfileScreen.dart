@@ -70,8 +70,8 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -83,8 +83,8 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                 margin: EdgeInsets.only(top: 80),
                 padding:
                     EdgeInsets.only(top: 50, left: 16, right: 16, bottom: 16),
-                width: context.width(),
-                height: context.height(),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 decoration: boxDecorationWithShadow(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30),
@@ -137,7 +137,7 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                       16.height,
                       AppButton(
                         color: WAPrimaryColor,
-                        width: context.width(),
+                        width: MediaQuery.of(context).size.width,
                         child: Text('Continue',
                             style: boldTextStyle(color: Colors.white)),
                         onTap: () {
@@ -148,8 +148,8 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                           }
                         },
                       ).cornerRadiusWithClipRRect(30).paddingOnly(
-                          left: context.width() * 0.1,
-                          right: context.width() * 0.1),
+                          left: MediaQuery.of(context).size.width * 0.1,
+                          right: MediaQuery.of(context).size.width * 0.1),
                     ],
                   ),
                 ),

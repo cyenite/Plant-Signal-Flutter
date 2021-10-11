@@ -38,8 +38,8 @@ class WAHomeScreenState extends State<WAHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: context.height(),
-        width: context.width(),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/walletApp/wa_bg.jpg'),

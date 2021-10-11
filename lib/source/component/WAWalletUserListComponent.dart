@@ -35,7 +35,7 @@ class WAWalletUserListComponentState extends State<WAWalletUserListComponent> {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      width: context.width(),
+      width: MediaQuery.of(context).size.width,
       child: ListView(
         scrollDirection: Axis.horizontal,
         shrinkWrap: false,

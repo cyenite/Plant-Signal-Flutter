@@ -57,8 +57,8 @@ class WAWalkThroughScreenState extends State<WAWalkThroughScreen> {
       ),
       backgroundColor: Colors.white,
       body: Container(
-        width: context.width(),
-        height: context.height(),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -70,7 +70,7 @@ class WAWalkThroughScreenState extends State<WAWalkThroughScreen> {
             children: [
               Container(
                 height: 400,
-                width: context.width(),
+                width: MediaQuery.of(context).size.width,
                 child: PageView(
                   controller: pageController,
                   children: list.map((e) {

@@ -37,7 +37,7 @@ class WAVoucherComponentState extends State<WAVoucherComponent> {
       padding: EdgeInsets.all(16),
       decoration: boxDecorationRoundedWithShadow(16),
       alignment: AlignmentDirectional.center,
-      width: context.width() * 0.40,
+      width: MediaQuery.of(context).size.width * 0.40,
       child: Column(
         children: [
           waCommonCachedNetworkImage(

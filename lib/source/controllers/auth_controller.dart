@@ -11,7 +11,7 @@ class AuthController extends GetxController {
   RxBool loggedIn = false.obs;
   RxString errorMessage = ''.obs;
   FirebaseAuth _auth = FirebaseAuth.instance;
-  late Rx<User?> _firebaseUser;
+  late Rx<User?> _firebaseUser = Rx(_auth.currentUser);
 
   User? get user => _firebaseUser.value;
 
@@ -58,6 +58,8 @@ class AuthController extends GetxController {
       );
     }
   }
+
+  void loginWithGoogle() async {}
 
   void signOut() async {
     try {

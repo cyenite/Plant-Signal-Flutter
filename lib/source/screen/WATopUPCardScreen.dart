@@ -66,8 +66,8 @@ class WATopUPCardScreenState extends State<WATopUPCardScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 60),
           decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
           child: SingleChildScrollView(
@@ -82,7 +82,7 @@ class WATopUPCardScreenState extends State<WATopUPCardScreen> {
                 Container(
                   padding: EdgeInsets.all(8),
                   margin: EdgeInsets.only(left: 16, right: 16),
-                  width: context.width(),
+                  width: MediaQuery.of(context).size.width,
                   decoration: boxDecorationRoundedWithShadow(16),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:plant_signal/source/controllers/auth_controller.dart';
 import 'package:plant_signal/source/screen/WALoginScreen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
@@ -17,6 +19,7 @@ class WARegisterScreenState extends State<WARegisterScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
+  AuthController controller = Get.find<AuthController>();
 
   FocusNode fullNameFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
@@ -47,8 +50,8 @@ class WARegisterScreenState extends State<WARegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: context.width(),
-        height: context.height(),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -65,7 +68,7 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                   alignment: Alignment.topCenter,
                   children: <Widget>[
                     Container(
-                      width: context.width(),
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
                       margin: EdgeInsets.only(top: 55.0),
                       decoration: boxDecorationWithShadow(
@@ -133,7 +136,7 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                                   textFieldType: TextFieldType.PASSWORD,
                                   isPassword: true,
                                   keyboardType: TextInputType.visiblePassword,
-                                  controller: passwordController,
+                                  controller: confirmPasswordController,
                                   focus: confirmPassWordFocusNode,
                                 ),
                                 30.height,
@@ -144,13 +147,41 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                                         shapeBorder: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30)),
-                                        width: context.width(),
+                                        width: MediaQuery.of(context).size.width,
                                         onTap: () {
-                                          WALoginScreen().launch(context);
+                                          if (passwordController.text ==
+                                              confirmPasswordController.text) {
+                                            if (fullNameController
+                                                    .text.isNotEmpty &&
+                                                emailController
+                                                    .text.isNotEmpty) {
+                                              if (emailController
+                                                  .text.isEmail) {
+                                                controller.createUser(
+                                                    fullNameController.text,
+                                                    emailController.text,
+                                                    passwordController.text);
+                                                WALoginScreen().launch(context);
+                                              } else {
+                                                Get.snackbar("Error",
+                                                    "Provide a valid email");
+                                              }
+                                            } else {
+                                              Get.snackbar("Error",
+                                                  "Fill all required fields");
+                                            }
+                                          } else {
+                                            Get.snackbar("Error",
+                                                "Passwords do not match");
+                                          }
                                         })
                                     .paddingOnly(
-                                        left: context.width() * 0.1,
-                                        right: context.width() * 0.1),
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.1),
                                 30.height,
                                 Row(
                                   mainAxisSize: MainAxisSize.min,

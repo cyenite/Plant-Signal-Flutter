@@ -61,8 +61,8 @@ class WABillPayScreenState extends State<WABillPayScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 40),
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -72,7 +72,7 @@ class WABillPayScreenState extends State<WABillPayScreen> {
             child: Column(
               children: [
                 Container(
-                  width: context.width(),
+                  width: MediaQuery.of(context).size.width,
                   decoration: boxDecorationRoundedWithShadow(16),
                   padding: EdgeInsets.all(16),
                   child: Wrap(
@@ -85,7 +85,7 @@ class WABillPayScreenState extends State<WABillPayScreen> {
                             top: 8, bottom: 8, left: 8, right: 8),
                         decoration: boxDecorationRoundedWithShadow(16),
                         alignment: AlignmentDirectional.center,
-                        width: context.width() * 0.25,
+                        width: MediaQuery.of(context).size.width * 0.25,
                         child: WAOperationComponent(
                           itemModel: item,
                           isApplyColor: true,

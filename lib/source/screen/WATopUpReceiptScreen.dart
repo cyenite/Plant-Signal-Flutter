@@ -55,9 +55,9 @@ class WATopUpReceiptScreenState extends State<WATopUpReceiptScreen> {
           automaticallyImplyLeading: false,
         ),
         body: Container(
-          height: context.height(),
+          height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.only(top: 60, bottom: 16),
-          width: context.width(),
+          width: MediaQuery.of(context).size.width,
           child: SingleChildScrollView(
             child: Stack(
               alignment: AlignmentDirectional.topCenter,
@@ -70,7 +70,7 @@ class WATopUpReceiptScreenState extends State<WATopUpReceiptScreen> {
                     margin: EdgeInsets.only(left: 16, right: 16, top: 100),
                     padding: EdgeInsets.only(
                         top: 110, left: 16, right: 16, bottom: 50),
-                    width: context.width(),
+                    width: MediaQuery.of(context).size.width,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -92,7 +92,7 @@ class WATopUpReceiptScreenState extends State<WATopUpReceiptScreen> {
                         16.height,
                         Container(
                           padding: EdgeInsets.all(10),
-                          width: context.width(),
+                          width: MediaQuery.of(context).size.width,
                           decoration: boxDecorationRoundedWithShadow(16),
                           child: WASendViaComponent(item: widget.card),
                         ),

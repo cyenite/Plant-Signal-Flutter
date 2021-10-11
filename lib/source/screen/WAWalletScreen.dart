@@ -58,8 +58,8 @@ class WAWalletScreenState extends State<WAWalletScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 70),
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -71,7 +71,7 @@ class WAWalletScreenState extends State<WAWalletScreen> {
               children: [
                 SizedBox(
                   height: 200,
-                  width: context.width(),
+                  width: MediaQuery.of(context).size.width,
                   child: PageView(
                     controller: pageController,
                     children: walletList.map((WACardModel item) {

@@ -49,8 +49,8 @@ class WAMyProfileScreenState extends State<WAMyProfileScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
               image: DecorationImage(

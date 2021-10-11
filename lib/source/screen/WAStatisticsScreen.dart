@@ -47,8 +47,8 @@ class WAStatisticScreenState extends State<WAStatisticScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
               image: DecorationImage(

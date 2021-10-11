@@ -105,7 +105,7 @@ class WAPayToComponentState extends State<WAPayToComponent> {
           Container(
             padding: EdgeInsets.all(8),
             margin: EdgeInsets.only(left: 16, right: 16),
-            width: context.width(),
+            width: MediaQuery.of(context).size.width,
             decoration: boxDecorationRoundedWithShadow(16),
             child: DropdownButtonHideUnderline(
               child: DropdownButton(

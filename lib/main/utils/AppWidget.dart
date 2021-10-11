@@ -234,7 +234,7 @@ BoxConstraints dynamicBoxConstraints({double? maxWidth}) {
 }
 
 double dynamicWidth(BuildContext context) {
-  return isMobile ? context.width() : applicationMaxWidth;
+  return isMobile ? MediaQuery.of(context).size.width : applicationMaxWidth;
 }
 
 /*class ContainerX extends StatelessWidget {
@@ -248,8 +248,8 @@ double dynamicWidth(BuildContext context) {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: context.width(),
-      height: context.height(),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: ConstrainedBox(
         constraints: dynamicBoxConstraints(maxWidth: maxWidth),
         child: child,
@@ -316,7 +316,7 @@ class ContainerX extends StatelessWidget {
             child: Container(
               constraints: useFullWidth.validate()
                   ? null
-                  : dynamicBoxConstraints(maxWidth: context.width() * 0.9),
+                  : dynamicBoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.9),
               child: web ?? SizedBox(),
             ),
           );

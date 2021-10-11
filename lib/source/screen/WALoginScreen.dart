@@ -136,7 +136,9 @@ class WALoginScreenState extends State<WALoginScreen> {
                                                 BorderRadius.circular(30)),
                                         width: MediaQuery.of(context).size.width,
                                         onTap: () {
-                                          Get.to(WAAddCredentialScreen());
+                                          if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
+                                            controller.login(emailController.text, passwordController.text);
+                                          }
                                         })
                                     .paddingOnly(
                                         left:

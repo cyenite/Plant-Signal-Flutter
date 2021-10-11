@@ -42,6 +42,18 @@ class Database {
     }
   }
 
+  Future<void> getInfo() async {
+    try {
+      await _firestore
+          .collection("information")
+          .doc()
+          .collection("app_information")
+          .get();
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
   /*Stream<List<TodoModel>> todoStream(String uid) {
     return _firestore
         .collection("users")

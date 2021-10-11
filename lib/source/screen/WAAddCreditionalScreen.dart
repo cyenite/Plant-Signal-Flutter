@@ -45,8 +45,8 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
         ],
       ),
       body: Container(
-        height: context.height(),
-        width: context.width(),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -57,8 +57,8 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
           children: [
             Image.asset(
               'images/policy_illustration.png',
-              width: context.width() * 0.80,
-              height: context.width() * 0.80,
+              width: MediaQuery.of(context).size.width * 0.80,
+              height: MediaQuery.of(context).size.width * 0.80,
               fit: BoxFit.cover,
             ),
             8.height,
@@ -75,14 +75,14 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
             ),
             30.height,
             SizedBox(
-              width: context.width() * 0.5,
+              width: MediaQuery.of(context).size.width * 0.5,
               child: AppButton(
                   text: "Next",
                   color: WAPrimaryColor,
                   textColor: Colors.white,
                   shapeBorder: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  width: context.width(),
+                  width: MediaQuery.of(context).size.width,
                   onTap: () {
                     WAVerificationScreen().launch(context);
                   }),

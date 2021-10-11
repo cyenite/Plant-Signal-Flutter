@@ -57,10 +57,13 @@ class WAVoucherScreenState extends State<WAVoucherScreen> {
           brightness: Brightness.dark,
         ),
         body: Container(
-          height: context.height(),
-          width: context.width(),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.only(top: 40),
-          decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/walletApp/wa_bg.jpg'),
+                  fit: BoxFit.cover)),
           child: Container(
             margin: EdgeInsets.only(top: 30),
             decoration: boxDecorationRoundedWithShadow(

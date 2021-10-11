@@ -56,8 +56,8 @@ class WAOperatorsScreenState extends State<WAOperatorsScreen> {
         brightness: Brightness.dark,
       ),
       body: Container(
-        height: context.height(),
-        width: context.width(),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.only(top: 80),
         decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
         child: Container(
@@ -76,7 +76,7 @@ class WAOperatorsScreenState extends State<WAOperatorsScreen> {
                   padding: EdgeInsets.only(top: 16, bottom: 8, left: 8, right: 8),
                   decoration: boxDecorationRoundedWithShadow(16),
                   alignment: AlignmentDirectional.center,
-                  width: context.width() * 0.27,
+                  width: MediaQuery.of(context).size.width * 0.27,
                   child: WAOperationComponent(
                     itemModel: item,
                   ),

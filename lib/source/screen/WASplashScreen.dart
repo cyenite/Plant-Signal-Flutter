@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WAWalkThroughScreen.dart';
+import 'package:plant_signal/source/screen/WALoginScreen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
-
-import '../root.dart';
 
 class WASplashScreen extends StatefulWidget {
   static String tag = '/WASplashScreen';
@@ -25,7 +23,7 @@ class WASplashScreenState extends State<WASplashScreen> {
         statusBarIconBrightness: Brightness.light);
     await Future.delayed(Duration(seconds: 3));
     if (mounted) finish(context);
-    Get.off(RootApp());
+    Get.off(WALoginScreen());
   }
 
   @override

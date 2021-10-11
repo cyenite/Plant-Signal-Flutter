@@ -1,4 +1,4 @@
-package com.plant.plant_signal
+package com.plant.signal
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -15,4 +15,9 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+    <string name="app_name">Your App Name here.</string>
+    <!-- Replace "000000000000" with your Facebook App ID here. -->
+    <string name="facebook_app_id">000000000000</string>
+    <!-- Replace "000000000000" with your Facebook App ID here.    -->
+    <string name="fb_login_protocol_scheme">fb000000000000</string>
 </resources>

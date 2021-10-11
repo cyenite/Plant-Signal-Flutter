@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
-import 'package:plant_signal/source/screen/WABillPayScreen.dart';
-import 'package:plant_signal/source/screen/WACreditCardScreen.dart';
 import 'package:plant_signal/source/screen/WASendMoneyViaLoopScreen.dart';
-import 'package:plant_signal/source/screen/WAVoucherScreen.dart';
 
 List<String?> waMonthList = <String?>[
   "Jan",
@@ -47,20 +44,19 @@ List<String?> overViewList = ["All", "Weekly", "Yearly", "Daily", "Monthly"];
 List<WAWalkThroughModel> waWalkThroughList() {
   List<WAWalkThroughModel> list = [];
   list.add(WAWalkThroughModel(
-      title: "Easily Accessible",
+      title: "Launch App",
       description:
-          "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.",
-      image: 'images/walletApp/wa_walkthorugh.png'));
+          "Open Plant Signal app on your mobile device and sign in to your account.",
+      image: 'images/launch_app.jpg'));
   list.add(WAWalkThroughModel(
-      title: "Mange Anytime",
+      title: "Scan",
       description:
-          "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.",
-      image: 'images/walletApp/wa_walkthorugh.png'));
+          "Get your suspicious crop and click on scan button on the app. Take a picture of the part of the crop.",
+      image: 'images/scan_image.jpg'));
   list.add(WAWalkThroughModel(
-      title: "Safe Transaction",
-      description:
-          "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.",
-      image: 'images/walletApp/wa_walkthorugh.png'));
+      title: "Results",
+      description: "Your results will be relayed to you by the app.",
+      image: 'images/plantlogo.png'));
 
   return list;
 }
@@ -77,7 +73,8 @@ List<WACardModel> waCardList() {
       title: 'Detection Status',
       balance: 'Active',
       cardNumber: 'Last Update: ',
-      date: DateTime.now().day.toString(),
+      date:
+          '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
       color: Color(0xFF26C884)));
   cardList.add(WACardModel(
       title: 'App Version',
@@ -100,49 +97,55 @@ List<WAOperationsModel> waOperationList() {
     color: Color(0xFFFF7426),
     title: 'Cherries',
     image: 'images/plantlogo.png',
-    widget: WAVoucherScreen(),
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
     title: 'Grapes',
     image: 'images/plantlogo.png',
-    widget: WACreditCardScreen(),
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF26C884),
     title: 'Maize',
     image: 'images/plantlogo.png',
-    widget: WABillPayScreen(),
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
     title: 'Tomatoes',
     image: 'images/plantlogo.png',
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF26C884),
     title: 'Potatoes',
     image: 'images/plantlogo.png',
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
     title: 'Peach',
     image: 'images/plantlogo.png',
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
     title: 'Strawberries',
     image: 'images/plantlogo.png',
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
     title: 'Maize',
     image: 'images/plantlogo.png',
+    widget: WASendMoneyViaLoopScreen(),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFF13452),
     title: 'Pepper',
     image: 'images/plantlogo.png',
+    widget: WASendMoneyViaLoopScreen(),
   ));
   return operationModel;
 }
@@ -282,23 +285,28 @@ List<WABillPayModel> waSelectBillList() {
 List<WACardModel> waSendViaCardList() {
   List<WACardModel> list = [];
   list.add(WACardModel(
-      balance: '\$12,00,000',
-      cardNumber: '123 985 7654327',
-      date: '03/23',
-      color: Color(0xFF6C56F9),
-      image: 'images/walletApp/wa_card.png'));
-  list.add(WACardModel(
-      balance: '\$12,23,000',
-      cardNumber: '985 123 7654327',
-      date: '25/23',
-      color: Color(0xFFFF7426),
-      image: 'images/walletApp/wa_card.png'));
-  list.add(WACardModel(
+      sentiment: 'Positive',
       balance: '\$23,00,000',
-      cardNumber: '765 123 9854327',
+      cardNumber: 'Give a positive review',
       date: '03/25',
       color: Color(0xFF26C884),
-      image: 'images/walletApp/wa_card.png'));
+      image: 'images/walletApp/wa_up_right.png'));
+  list.add(WACardModel(
+      sentiment: 'Neutral',
+      balance: '\$12,00,000',
+      cardNumber: 'Give an unbiased review',
+      date: '03/23',
+      color: Color(0xFF6C56F9),
+      image: 'images/walletApp/wa_add_icon.png'));
+
+  list.add(WACardModel(
+      sentiment: 'Negative',
+      balance: '\$12,23,000',
+      cardNumber: 'Give a negative review',
+      date: '25/23',
+      color: Color(0xFFFFFFFF),
+      image: 'images/walletApp/wa_down_left.png'));
+
   return list;
 }
 

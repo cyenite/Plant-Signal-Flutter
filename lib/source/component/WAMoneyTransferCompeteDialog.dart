@@ -37,24 +37,24 @@ class WAMoneyTransferCompleteDialogState
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         waCommonCachedNetworkImage(
-            'https://media.istockphoto.com/vectors/online-payment-service-banking-or-money-transfer-with-mobile-app-and-vector-id1152615463?k=20&m=1152615463&s=612x612&w=0&h=BoT8RNVKIw1YC_3yhXv-5wrVxXM9NmoaZJx_CKG_3zw=',
+            'https://pluspng.com/img-png/success-png-success-icon-image-23194-400.png',
             height: 200,
             width: 200,
             fit: BoxFit.fill),
         16.height,
         Text('Done!', style: secondaryTextStyle()),
         16.height,
-        Text('Money Transfer Complete',
+        Text('Feedback Sent Successfully!',
             style: boldTextStyle(size: 22), textAlign: TextAlign.center),
         8.height,
         createRichText(list: [
           TextSpan(
-              text: "You have sent \u00241250 to your friend",
+              text: "Your feedback will be used to improve our services",
               style: secondaryTextStyle()),
-          TextSpan(text: " John", style: boldTextStyle()),
+          TextSpan(text: "", style: boldTextStyle()),
         ], textAlign: TextAlign.center),
         8.height,
-        Text('Account no endings ***123455', style: secondaryTextStyle()),
+        Text('Thank you for using Plant Signal!', style: secondaryTextStyle()),
         30.height,
         AppButton(
           color: WAPrimaryColor,

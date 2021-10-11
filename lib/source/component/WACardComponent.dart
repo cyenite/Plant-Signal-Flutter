@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
-import 'package:plant_signal/source/screen/WASendMoneyViaLoopScreen.dart';
 
 class WACardComponent extends StatefulWidget {
   static String tag = '/WACardComponent';
@@ -69,8 +68,6 @@ class WACardComponentState extends State<WACardComponent> {
           ),
         ],
       ),
-    ).onTap(() {
-      WASendMoneyViaLoopScreen().launch(context);
-    });
+    );
   }
 }

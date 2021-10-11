@@ -23,9 +23,11 @@ class WACardModel {
   String? cardNumber;
   String? date;
   Color? color;
+  String? sentiment;
 
   WACardModel(
       {this.title,
+        this.sentiment,
       this.image,
       this.balance,
       this.cardNumber,

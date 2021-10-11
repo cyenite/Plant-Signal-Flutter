@@ -42,7 +42,7 @@ class WASendViaComponentState extends State<WASendViaComponent> {
               borderRadius: BorderRadius.circular(4),
               backgroundColor: widget.item!.color!),
           padding: EdgeInsets.all(4),
-          width: 60,
+          width: 40,
           height: 40,
           child: waCommonCachedNetworkImage('${widget.item!.image}',
               fit: BoxFit.fill, color: Colors.white),
@@ -51,7 +51,8 @@ class WASendViaComponentState extends State<WASendViaComponent> {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Bank Visa Card', style: boldTextStyle(size: 14), maxLines: 1),
+            Text('${widget.item!.sentiment!}',
+                style: boldTextStyle(size: 14), maxLines: 1),
             Text(widget.item!.cardNumber.validate(),
                 style: secondaryTextStyle(size: 12))
           ],

@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:plant_signal/source/controllers/bindings/auth_binding.dart';
 import 'package:plant_signal/source/screen/WASplashScreen.dart';
 
 import 'locale/Languages.dart';
@@ -12,31 +15,16 @@ AppStore appStore = AppStore();
 BaseLanguage? language;
 
 void main() {
+  Firebase.initializeApp();
   runApp(MyApp());
 }
-
-/*
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.green));
-    return MaterialApp(
-      title: 'Plant Signal',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: Splash(),
-    );
-  }
-}
-*/
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => MaterialApp(
+      builder: (_) => GetMaterialApp(
+        initialBinding: AuthBinding(),
         debugShowCheckedModeBanner: false,
         title: 'Plant Signal',
         home: WASplashScreen(),

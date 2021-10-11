@@ -1,6 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:plant_signal/source/controllers/auth_controller.dart';
+import 'package:plant_signal/source/screen/WAAddCreditionalScreen.dart';
 import 'package:plant_signal/source/screen/WARegisterScreen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
@@ -19,6 +23,7 @@ class WALoginScreenState extends State<WALoginScreen> {
   var passwordController = TextEditingController();
   FocusNode emailFocusNode = FocusNode();
   FocusNode passWordFocusNode = FocusNode();
+  AuthController controller = Get.find<AuthController>();
 
   @override
   void initState() {
@@ -38,12 +43,26 @@ class WALoginScreenState extends State<WALoginScreen> {
     if (mounted) super.setState(fn);
   }
 
+  String? validateEmail(String? value) {
+    if (value == null) {
+      return null;
+    }
+    const pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    final regExp = RegExp(pattern);
+    if (value.isEmpty) {
+      return 'Email is required';
+    } else if (!regExp.hasMatch(value)) {
+      return 'Invalid Email';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: context.width(),
-        height: context.height(),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('images/walletApp/wa_bg.jpg'),
@@ -59,7 +78,7 @@ class WALoginScreenState extends State<WALoginScreen> {
                   alignment: Alignment.topCenter,
                   children: <Widget>[
                     Container(
-                      width: context.width(),
+                      width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
                       margin: EdgeInsets.only(top: 55.0),
                       decoration: boxDecorationWithShadow(
@@ -115,15 +134,17 @@ class WALoginScreenState extends State<WALoginScreen> {
                                         shapeBorder: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(30)),
-                                        width: context.width(),
+                                        width: MediaQuery.of(context).size.width,
                                         onTap: () {
-                                          WAEditProfileScreen(
-                                                  isEditProfile: false)
-                                              .launch(context);
+                                          Get.to(WAAddCredentialScreen());
                                         })
                                     .paddingOnly(
-                                        left: context.width() * 0.1,
-                                        right: context.width() * 0.1),
+                                        left:
+                                            MediaQuery.of(context).size.width *
+                                                0.1,
+                                        right:
+                                            MediaQuery.of(context).size.width *
+                                                0.1),
                                 30.height,
                                 Container(
                                   width: 200,
@@ -144,24 +165,33 @@ class WALoginScreenState extends State<WALoginScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      decoration:
-                                          boxDecorationRoundedWithShadow(16),
-                                      padding: EdgeInsets.all(16),
-                                      child: Image.asset(
-                                          'images/walletApp/wa_facebook.png',
-                                          width: 40,
-                                          height: 40),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.to(WAAddCredentialScreen());
+                                      },
+                                      child: Container(
+                                        decoration:
+                                            boxDecorationRoundedWithShadow(16),
+                                        padding: EdgeInsets.all(16),
+                                        child: Image.asset(
+                                            'images/walletApp/wa_facebook.png',
+                                            width: 40,
+                                            height: 40),
+                                      ),
                                     ),
                                     30.width,
-                                    Container(
-                                      decoration:
-                                          boxDecorationRoundedWithShadow(16),
-                                      padding: EdgeInsets.all(16),
-                                      child: Image.asset(
-                                          'images/walletApp/wa_google_logo.png',
-                                          width: 40,
-                                          height: 40),
+                                    GestureDetector(
+                                      onTap: () {
+                                      },
+                                      child: Container(
+                                        decoration:
+                                            boxDecorationRoundedWithShadow(16),
+                                        padding: EdgeInsets.all(16),
+                                        child: Image.asset(
+                                            'images/walletApp/wa_google_logo.png',
+                                            width: 40,
+                                            height: 40),
+                                      ),
                                     ),
                                   ],
                                 ).center(),

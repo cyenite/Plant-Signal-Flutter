@@ -1,9 +1,15 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/model/user.dart';
+import 'package:plant_signal/source/screen/WAAddCreditionalScreen.dart';
+import 'package:plant_signal/source/screen/WADashboardScreen.dart';
+import 'package:plant_signal/source/screen/WALoginScreen.dart';
 
 import 'db_controller.dart';
 
@@ -33,7 +39,7 @@ class AuthController extends GetxController {
       );
       if (await Database().createNewUser(_user)) {
         Get.find<UserController>().user = _user;
-        Get.back();
+        Get.off(()=>WALoginScreen());
       }
     } catch (e) {
       Get.snackbar(
@@ -48,6 +54,7 @@ class AuthController extends GetxController {
     try {
       UserCredential _authResult = await _auth.signInWithEmailAndPassword(
           email: email.trim(), password: password);
+      print(_authResult.user!.uid);
       Get.find<UserController>().user =
           await Database().getUser(_authResult.user!.uid);
     } catch (e) {
@@ -59,7 +66,106 @@ class AuthController extends GetxController {
     }
   }
 
-  void loginWithGoogle() async {}
+  void updateUser(String name, String phone, bool isProfileEdit) async {
+    try {
+      AppUser _user = Get.find<UserController>().user;
+      _user.phoneNumber = phone;
+      _user.name = name;
+      if (await Database().editUserProfile(_user)) {
+        if (isProfileEdit) {
+          Get.back();
+        } else {
+          verifyPhoneNumber();
+        }
+      } else {
+        Get.snackbar(
+          "Error",
+          "Could not update your profile. Please try again.",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
+    } catch (e) {
+      Get.snackbar(
+        "Error creating Account",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  void verifyPhoneNumber() async {
+    Get.snackbar(
+      "Checking info...",
+      "Please wait",
+      snackPosition: SnackPosition.BOTTOM,
+    );
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: Get.find<UserController>().user.phoneNumber!,
+      verificationCompleted: (PhoneAuthCredential credential) {
+        Get.snackbar(
+          "Complete",
+          "Verification successful",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        Timer(Duration(seconds: 5), () {
+          Get.off(() => WADashboardScreen());
+        });
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        Get.snackbar(
+          "Error",
+          "Verification not successful",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        // Update the UI - wait for the user to enter the SMS code
+        Get.off(()=>WAAddCredentialScreen(verificationId: verificationId));
+      },
+      timeout: const Duration(seconds: 60),
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
+
+  void completePhoneRegistration(String verificationId) async {
+    try{
+      String smsCode = Get.find<UserController>().otpCode.value;
+      // Create a PhoneAuthCredential with the code
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationId, smsCode: smsCode);
+
+      print("Credential: ${credential.toString()}");
+      // Sign the user in (or link) with the credential
+      await _auth.signInWithCredential(credential);
+
+      Get.off(() => WADashboardScreen());
+    }
+    catch(e){
+      Get.snackbar(
+        "Error",
+        "Verification code is incorrect",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
+  Future<UserCredential> loginWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
 
   void signOut() async {
     try {

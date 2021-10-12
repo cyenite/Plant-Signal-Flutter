@@ -4,7 +4,7 @@ import 'package:plant_signal/source/model/user.dart';
 
 class UserController extends GetxController {
   Rx<AppUser> _userModel = AppUser().obs;
-
+  late Rx<String> otpCode;
   AppUser get user => _userModel.value;
 
   set user(AppUser value) => this._userModel.value = value;

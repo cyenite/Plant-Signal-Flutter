@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WADashboardScreen.dart';
 import 'package:plant_signal/source/screen/WAVerificationScreen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 
 class WAAddCredentialScreen extends StatefulWidget {
   static String tag = '/WAAddCredentialScreen';
+  final String verificationId;
+
+  WAAddCredentialScreen({required this.verificationId});
 
   @override
   WAAddCredentialScreenState createState() => WAAddCredentialScreenState();
@@ -40,7 +43,9 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
               .paddingOnly(right: 8)
               .center()
               .onTap(() {
-            WADashboardScreen().launch(context);
+            Get.to(WAVerificationScreen(
+              verificationID: widget.verificationId,
+            ));
           }),
         ],
       ),
@@ -84,7 +89,9 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
                       borderRadius: BorderRadius.circular(30)),
                   width: MediaQuery.of(context).size.width,
                   onTap: () {
-                    WAVerificationScreen().launch(context);
+                    Get.off(() => WAVerificationScreen(
+                          verificationID: widget.verificationId,
+                        ));
                   }),
             ),
           ],

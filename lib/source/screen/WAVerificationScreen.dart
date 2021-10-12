@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/otp_field_style.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:plant_signal/source/controllers/auth_controller.dart';
+import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
-
-import 'WADashboardScreen.dart';
 
 class WAVerificationScreen extends StatefulWidget {
   static String tag = '/WAVerificationScreen';
+  final String verificationID;
+
+  WAVerificationScreen({required this.verificationID});
 
   @override
   WAVerificationScreenState createState() => WAVerificationScreenState();
 }
 
 class WAVerificationScreenState extends State<WAVerificationScreen> {
+  UserController controller = Get.find<UserController>();
+  AuthController authController = Get.find<AuthController>();
   @override
   void initState() {
     super.initState();
+    //authController.verifyPhoneNumber();
     init();
   }
 
@@ -73,7 +80,7 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
               ),
               16.height,
               Text(
-                'We have sent a 4 digit verification code to your phone number and email. Please enter the code below to verify it\'s you',
+                'We have sent a 4 digit verification code to ${controller.user.phoneNumber}. Please enter the code below to verify it\'s you',
                 style: secondaryTextStyle(),
                 textAlign: TextAlign.center,
               ),
@@ -82,11 +89,12 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                 children: [
                   SizedBox(
                     height: 60,
+                    //width: MediaQuery.of(context).size.width,
                     child: OTPTextField(
-                      length: 4,
+                      length: 6,
                       width: MediaQuery.of(context).size.width,
-                      fieldWidth: 60,
-                      style: boldTextStyle(size: 24),
+                      fieldWidth: 40,
+                      style: boldTextStyle(size: 20),
                       textFieldAlignment: MainAxisAlignment.spaceBetween,
                       fieldStyle: FieldStyle.box,
                       otpFieldStyle: OtpFieldStyle(
@@ -94,8 +102,12 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                         backgroundColor: Colors.grey.withOpacity(0.1),
                         enabledBorderColor: Colors.transparent,
                       ),
-                      onChanged: (value) {},
-                      onCompleted: (value) {},
+                      onChanged: (value) {
+                        controller.otpCode = value.obs;
+                      },
+                      onCompleted: (value) {
+                        controller.otpCode = value.obs;
+                      },
                     ),
                   ),
                 ],
@@ -120,9 +132,7 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                     shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     width: MediaQuery.of(context).size.width,
-                    onTap: () {
-                      WADashboardScreen().launch(context);
-                    }),
+                    onTap: () {authController.completePhoneRegistration(widget.verificationID);}),
               ),
             ],
           ).paddingAll(30),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WAAddCreditionalScreen.dart';
+import 'package:plant_signal/source/controllers/auth_controller.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
@@ -9,7 +10,7 @@ class WAEditProfileScreen extends StatefulWidget {
   static String tag = '/WAEditProfileScreen';
   final isEditProfile;
 
-  WAEditProfileScreen({this.isEditProfile});
+  WAEditProfileScreen({@required this.isEditProfile});
 
   @override
   WAEditProfileScreenState createState() => WAEditProfileScreenState();
@@ -21,6 +22,7 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
 
   FocusNode fullNameFocusNode = FocusNode();
   FocusNode contactNumberFocusNode = FocusNode();
+  AuthController controller = Get.find<AuthController>();
 
   @override
   void initState() {
@@ -141,10 +143,25 @@ class WAEditProfileScreenState extends State<WAEditProfileScreen> {
                         child: Text('Continue',
                             style: boldTextStyle(color: Colors.white)),
                         onTap: () {
-                          if (widget.isEditProfile) {
-                            finish(context);
+                          if (fullNameController.text.isNotEmpty) {
+                            if (contactNumberController.text.isPhoneNumber) {
+                              controller.updateUser(
+                                  fullNameController.text,
+                                  contactNumberController.text,
+                                  widget.isEditProfile);
+                            } else {
+                              Get.snackbar(
+                                "Error",
+                                "Enter a valid phone number format",
+                                snackPosition: SnackPosition.BOTTOM,
+                              );
+                            }
                           } else {
-                            WAAddCredentialScreen().launch(context);
+                            Get.snackbar(
+                              "Error",
+                              "Fill all the required fields",
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
                           }
                         },
                       ).cornerRadiusWithClipRRect(30).paddingOnly(

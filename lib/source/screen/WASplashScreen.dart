@@ -23,7 +23,7 @@ class WASplashScreenState extends State<WASplashScreen> {
         statusBarIconBrightness: Brightness.light);
     await Future.delayed(Duration(seconds: 3));
     if (mounted) finish(context);
-    Get.off(WALoginScreen());
+    Get.off(() => WALoginScreen());
   }
 
   @override

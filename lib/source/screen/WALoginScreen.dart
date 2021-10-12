@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -6,10 +5,9 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/controllers/auth_controller.dart';
 import 'package:plant_signal/source/screen/WAAddCreditionalScreen.dart';
 import 'package:plant_signal/source/screen/WARegisterScreen.dart';
+import 'package:plant_signal/source/screen/WAVerificationScreen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
-
-import 'WAEditProfileScreen.dart';
 
 class WALoginScreen extends StatefulWidget {
   static String tag = '/WALoginScreen';
@@ -136,8 +134,12 @@ class WALoginScreenState extends State<WALoginScreen> {
                                                 BorderRadius.circular(30)),
                                         width: MediaQuery.of(context).size.width,
                                         onTap: () {
-                                          if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
-                                            controller.login(emailController.text, passwordController.text);
+                                          if (emailController.text.isNotEmpty &&
+                                              passwordController
+                                                  .text.isNotEmpty) {
+                                            controller.login(
+                                                emailController.text,
+                                                passwordController.text);
                                           }
                                         })
                                     .paddingOnly(
@@ -169,7 +171,7 @@ class WALoginScreenState extends State<WALoginScreen> {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        Get.to(WAAddCredentialScreen());
+                                        //Get.to(WAAddCredentialScreen(verificationId: '',));
                                       },
                                       child: Container(
                                         decoration:
@@ -184,6 +186,7 @@ class WALoginScreenState extends State<WALoginScreen> {
                                     30.width,
                                     GestureDetector(
                                       onTap: () {
+
                                       },
                                       child: Container(
                                         decoration:

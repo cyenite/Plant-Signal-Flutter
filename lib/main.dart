@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/controllers/bindings/auth_binding.dart';
+import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/screen/WASplashScreen.dart';
 
 import 'locale/Languages.dart';
@@ -23,6 +24,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Get.put(UserController());
     return Observer(
       builder: (_) => GetMaterialApp(
         initialBinding: AuthBinding(),

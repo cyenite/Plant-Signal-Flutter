@@ -2,11 +2,11 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/component/WACardComponent.dart';
 import 'package:plant_signal/source/component/WATransactionComponent.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WADataGenerator.dart';
+import 'package:shimmer/shimmer.dart';
 
 class WAWalletScreen extends StatefulWidget {
   static String tag = '/WAWalletScreen';
@@ -50,7 +50,7 @@ class WAWalletScreenState extends State<WAWalletScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text('Global Statistics',
+          title: Text('Community',
               style: boldTextStyle(color: Colors.black, size: 20)),
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -69,7 +69,7 @@ class WAWalletScreenState extends State<WAWalletScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                /*SizedBox(
                   height: 200,
                   width: MediaQuery.of(context).size.width,
                   child: PageView(
@@ -85,7 +85,7 @@ class WAWalletScreenState extends State<WAWalletScreen> {
                     },
                   ),
                 ),
-                8.height,
+                8.height,*/
                 DotsIndicator(
                   dotsCount: 3,
                   position: currentPosition.toDouble(),
@@ -100,14 +100,18 @@ class WAWalletScreenState extends State<WAWalletScreen> {
                 30.height,
                 Align(
                         alignment: Alignment.topLeft,
-                        child: Text('Transactions',
-                            style: boldTextStyle(size: 20)))
+                        child:
+                            Text('Coming soon', style: boldTextStyle(size: 20)))
                     .paddingLeft(16),
                 16.height,
                 Column(
                   children: transactionList.map((transactionItem) {
-                    return WATransactionComponent(
-                        transactionModel: transactionItem);
+                    return Shimmer.fromColors(
+                      baseColor: Colors.grey,
+                      highlightColor: Colors.white,
+                      child: WATransactionComponent(
+                          transactionModel: transactionItem),
+                    );
                   }).toList(),
                 ),
               ],

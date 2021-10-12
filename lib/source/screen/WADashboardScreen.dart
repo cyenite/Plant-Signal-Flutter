@@ -49,46 +49,71 @@ class WADashboardScreenState extends State<WADashboardScreen> {
     if (mounted) super.setState(fn);
   }
 
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => new AlertDialog(
+        title: new Text('Confirm'),
+        content: new Text('Do you want to exit the app?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: new Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: new Text('Yes'),
+          ),
+        ],
+      ),
+    )) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages.elementAt(_selectedIndex),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: Padding(
-        padding: EdgeInsets.all(6.0),
-        child: FloatingActionButton(
-          backgroundColor: WAPrimaryColor,
-          child: Icon(Icons.camera_alt, color: Colors.white),
-          onPressed: () {
-            _dialogCall(context);
-          },
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        body: _pages.elementAt(_selectedIndex),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.miniCenterDocked,
+        floatingActionButton: Padding(
+          padding: EdgeInsets.all(6.0),
+          child: FloatingActionButton(
+            backgroundColor: WAPrimaryColor,
+            child: Icon(Icons.camera_alt, color: Colors.white),
+            onPressed: () {
+              _dialogCall(context);
+            },
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        clipBehavior: Clip.antiAlias,
-        child: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          currentIndex: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: WAPrimaryColor,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.date_range), label: 'Statistics'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.assessment), label: 'Global'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
+        bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          clipBehavior: Clip.antiAlias,
+          child: BottomNavigationBar(
+            backgroundColor: Colors.white,
+            currentIndex: _selectedIndex,
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: WAPrimaryColor,
+            unselectedItemColor: Colors.grey,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.date_range), label: 'Statistics'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.assessment), label: 'Global'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: 'Profile'),
+            ],
+          ),
         ),
       ),
     );
@@ -301,6 +326,8 @@ class _MyDialogState extends State<MyDialog> {
       print('Failed to load model.');
     }
   }
+
+
 
   @override
   void initState() {

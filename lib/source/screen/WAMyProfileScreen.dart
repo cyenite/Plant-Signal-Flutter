@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/screen/WAEditProfileScreen.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
@@ -12,6 +14,7 @@ class WAMyProfileScreen extends StatefulWidget {
 }
 
 class WAMyProfileScreenState extends State<WAMyProfileScreen> {
+  UserController userController = Get.find<UserController>();
   @override
   void initState() {
     super.initState();
@@ -67,8 +70,14 @@ class WAMyProfileScreenState extends State<WAMyProfileScreen> {
                   width: 120,
                 ).cornerRadiusWithClipRRect(60),
                 16.height,
-                Text('Admin', style: boldTextStyle()),
-                Text('admin@test.com', style: secondaryTextStyle()),
+                Obx(() {
+                  return Text('${userController.user.name}',
+                      style: boldTextStyle());
+                }),
+                Obx(() {
+                  return Text('${userController.user.email}',
+                      style: secondaryTextStyle());
+                }),
                 16.height,
                 SettingItemWidget(
                     title: 'Edit Profile',

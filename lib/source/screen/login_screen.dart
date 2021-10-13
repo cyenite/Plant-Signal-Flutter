@@ -3,28 +3,23 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/controllers/auth_controller.dart';
-import 'package:plant_signal/source/screen/WALoginScreen.dart';
+import 'package:plant_signal/source/screen/registration_screen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
-class WARegisterScreen extends StatefulWidget {
-  static String tag = '/WARegisterScreen';
+class LoginScreen extends StatefulWidget {
+  static String tag = '/LoginScreen';
 
   @override
-  WARegisterScreenState createState() => WARegisterScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class WARegisterScreenState extends State<WARegisterScreen> {
-  var fullNameController = TextEditingController();
+class LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
-  var confirmPasswordController = TextEditingController();
-  AuthController controller = Get.find<AuthController>();
-
-  FocusNode fullNameFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
   FocusNode passWordFocusNode = FocusNode();
-  FocusNode confirmPassWordFocusNode = FocusNode();
+  AuthController controller = Get.find<AuthController>();
 
   @override
   void initState() {
@@ -32,9 +27,7 @@ class WARegisterScreenState extends State<WARegisterScreen> {
     init();
   }
 
-  Future<void> init() async {
-    //
-  }
+  Future<void> init() async {}
 
   @override
   void dispose() {
@@ -46,6 +39,20 @@ class WARegisterScreenState extends State<WARegisterScreen> {
     if (mounted) super.setState(fn);
   }
 
+  String? validateEmail(String? value) {
+    if (value == null) {
+      return null;
+    }
+    const pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    final regExp = RegExp(pattern);
+    if (value.isEmpty) {
+      return 'Email is required';
+    } else if (!regExp.hasMatch(value)) {
+      return 'Invalid Email';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,15 +60,14 @@ class WARegisterScreenState extends State<WARegisterScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/walletApp/wa_bg.jpg'),
-              fit: BoxFit.cover),
-        ),
+            image: DecorationImage(
+                image: AssetImage('images/walletApp/wa_bg.jpg'),
+                fit: BoxFit.cover)),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               50.height,
-              Text("Register New Account", style: boldTextStyle(size: 24)),
+              Text("Log In", style: boldTextStyle(size: 24)),
               Container(
                 margin: EdgeInsets.all(16),
                 child: Stack(
@@ -80,22 +86,9 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                50.height,
-                                Text("Full Name",
-                                    style: boldTextStyle(size: 14)),
-                                8.height,
-                                AppTextField(
-                                  decoration: waInputDecoration(
-                                      hint: 'Enter your full name here',
-                                      prefixIcon:
-                                          Icons.person_outline_outlined),
-                                  textFieldType: TextFieldType.NAME,
-                                  keyboardType: TextInputType.name,
-                                  controller: fullNameController,
-                                  focus: fullNameFocusNode,
-                                  nextFocus: emailFocusNode,
+                                SizedBox(
+                                  height: 50,
                                 ),
-                                16.height,
                                 Text("Email", style: boldTextStyle(size: 14)),
                                 8.height,
                                 AppTextField(
@@ -122,26 +115,16 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                                   keyboardType: TextInputType.visiblePassword,
                                   controller: passwordController,
                                   focus: passWordFocusNode,
-                                  nextFocus: confirmPassWordFocusNode,
                                 ),
                                 16.height,
-                                Text("Confirm Password",
-                                    style: boldTextStyle(size: 14)),
-                                8.height,
-                                AppTextField(
-                                  decoration: waInputDecoration(
-                                      hint: 'Re-type password',
-                                      prefixIcon: Icons.lock_outline),
-                                  suffixIconColor: WAPrimaryColor,
-                                  textFieldType: TextFieldType.PASSWORD,
-                                  isPassword: true,
-                                  keyboardType: TextInputType.visiblePassword,
-                                  controller: confirmPasswordController,
-                                  focus: confirmPassWordFocusNode,
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Text("Forgot password?",
+                                      style: primaryTextStyle()),
                                 ),
                                 30.height,
                                 AppButton(
-                                        text: "Register Account",
+                                        text: "Log In",
                                         color: WAPrimaryColor,
                                         textColor: Colors.white,
                                         shapeBorder: RoundedRectangleBorder(
@@ -149,30 +132,12 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                                                 BorderRadius.circular(30)),
                                         width: MediaQuery.of(context).size.width,
                                         onTap: () {
-                                          if (passwordController.text ==
-                                              confirmPasswordController.text) {
-                                            if (fullNameController
-                                                    .text.isNotEmpty &&
-                                                emailController
-                                                    .text.isNotEmpty) {
-                                              if (emailController
-                                                  .text.isEmail) {
-                                                controller.createUser(
-                                                    fullNameController.text,
-                                                    emailController.text,
-                                                    passwordController.text);
-                                                WALoginScreen().launch(context);
-                                              } else {
-                                                Get.snackbar("Error",
-                                                    "Provide a valid email");
-                                              }
-                                            } else {
-                                              Get.snackbar("Error",
-                                                  "Fill all required fields");
-                                            }
-                                          } else {
-                                            Get.snackbar("Error",
-                                                "Passwords do not match");
+                                          if (emailController.text.isNotEmpty &&
+                                              passwordController
+                                                  .text.isNotEmpty) {
+                                            controller.login(
+                                                emailController.text,
+                                                passwordController.text);
                                           }
                                         })
                                     .paddingOnly(
@@ -183,21 +148,70 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                                             MediaQuery.of(context).size.width *
                                                 0.1),
                                 30.height,
+                                Container(
+                                  width: 200,
+                                  child: Row(
+                                    children: [
+                                      Divider(thickness: 2).expand(),
+                                      8.width,
+                                      Text('or',
+                                          style: boldTextStyle(
+                                              size: 16, color: Colors.grey)),
+                                      8.width,
+                                      Divider(thickness: 2).expand(),
+                                    ],
+                                  ),
+                                ).center(),
+                                30.height,
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        //Get.to(PolicyScreen(verificationId: '',));
+                                      },
+                                      child: Container(
+                                        decoration:
+                                            boxDecorationRoundedWithShadow(16),
+                                        padding: EdgeInsets.all(16),
+                                        child: Image.asset(
+                                            'images/walletApp/wa_facebook.png',
+                                            width: 40,
+                                            height: 40),
+                                      ),
+                                    ),
+                                    30.width,
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Container(
+                                        decoration:
+                                            boxDecorationRoundedWithShadow(16),
+                                        padding: EdgeInsets.all(16),
+                                        child: Image.asset(
+                                            'images/walletApp/wa_google_logo.png',
+                                            width: 40,
+                                            height: 40),
+                                      ),
+                                    ),
+                                  ],
+                                ).center(),
+                                30.height,
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('Already have an account?',
+                                    Text('Don\'t have an account?',
                                         style: primaryTextStyle(
                                             color: Colors.grey)),
                                     4.width,
-                                    Text('Log In here',
+                                    Text('Register here',
                                         style:
                                             boldTextStyle(color: Colors.black)),
                                   ],
                                 ).onTap(() {
-                                  finish(context);
+                                  RegistrationScreen().launch(context);
                                 }).center(),
                               ],
                             ),
@@ -220,7 +234,7 @@ class WARegisterScreenState extends State<WARegisterScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              16.height,
             ],
           ),
         ),

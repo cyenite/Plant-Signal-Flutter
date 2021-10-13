@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/component/WACategoriesComponent.dart';
 import 'package:plant_signal/source/component/WAStatisticsChartComponent.dart';
-import 'package:plant_signal/source/component/WAStatisticsComponent.dart';
+import 'package:plant_signal/source/component/statistics_component.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
 import 'package:plant_signal/source/utils/WADataGenerator.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
-class WAStatisticScreen extends StatefulWidget {
-  static String tag = '/WAStatisticScreen';
+class StatisticScreen extends StatefulWidget {
+  static String tag = '/StatisticScreen';
 
   @override
-  WAStatisticScreenState createState() => WAStatisticScreenState();
+  StatisticScreenState createState() => StatisticScreenState();
 }
 
-class WAStatisticScreenState extends State<WAStatisticScreen> {
+class StatisticScreenState extends State<StatisticScreen> {
   List<WATransactionModel> categoriesList = waCategoriesList();
 
   @override
@@ -58,7 +58,7 @@ class WAStatisticScreenState extends State<WAStatisticScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                WAStatisticsComponent(),
+                StatisticsComponent(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

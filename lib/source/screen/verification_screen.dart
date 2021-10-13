@@ -8,17 +8,17 @@ import 'package:plant_signal/source/controllers/auth_controller.dart';
 import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 
-class WAVerificationScreen extends StatefulWidget {
-  static String tag = '/WAVerificationScreen';
+class VerificationScreen extends StatefulWidget {
+  static String tag = '/VerificationScreen';
   final String verificationID;
 
-  WAVerificationScreen({required this.verificationID});
+  VerificationScreen({required this.verificationID});
 
   @override
-  WAVerificationScreenState createState() => WAVerificationScreenState();
+  VerificationScreenState createState() => VerificationScreenState();
 }
 
-class WAVerificationScreenState extends State<WAVerificationScreen> {
+class VerificationScreenState extends State<VerificationScreen> {
   UserController controller = Get.find<UserController>();
   AuthController authController = Get.find<AuthController>();
   @override
@@ -132,7 +132,10 @@ class WAVerificationScreenState extends State<WAVerificationScreen> {
                     shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     width: MediaQuery.of(context).size.width,
-                    onTap: () {authController.completePhoneRegistration(widget.verificationID);}),
+                    onTap: () {
+                      authController
+                          .completePhoneRegistration(widget.verificationID);
+                    }),
               ),
             ],
           ).paddingAll(30),

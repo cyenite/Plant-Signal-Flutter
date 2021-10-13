@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WALoginScreen.dart';
+import 'package:plant_signal/source/screen/login_screen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 
-class WASplashScreen extends StatefulWidget {
-  static String tag = '/WASplashScreen';
+class SplashScreen extends StatefulWidget {
+  static String tag = '/SplashScreen';
 
   @override
-  WASplashScreenState createState() => WASplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class WASplashScreenState extends State<WASplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -23,7 +23,7 @@ class WASplashScreenState extends State<WASplashScreen> {
         statusBarIconBrightness: Brightness.light);
     await Future.delayed(Duration(seconds: 3));
     if (mounted) finish(context);
-    Get.off(() => WALoginScreen());
+    Get.off(() => LoginScreen());
   }
 
   @override

@@ -2,20 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WAVerificationScreen.dart';
+import 'package:plant_signal/source/screen/verification_screen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 
-class WAAddCredentialScreen extends StatefulWidget {
-  static String tag = '/WAAddCredentialScreen';
+class PolicyScreen extends StatefulWidget {
+  static String tag = '/PolicyScreen';
   final String verificationId;
 
-  WAAddCredentialScreen({required this.verificationId});
+  PolicyScreen({required this.verificationId});
 
   @override
-  WAAddCredentialScreenState createState() => WAAddCredentialScreenState();
+  PolicyScreenState createState() => PolicyScreenState();
 }
 
-class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
+class PolicyScreenState extends State<PolicyScreen> {
   @override
   void initState() {
     super.initState();
@@ -43,7 +43,7 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
               .paddingOnly(right: 8)
               .center()
               .onTap(() {
-            Get.to(WAVerificationScreen(
+            Get.to(VerificationScreen(
               verificationID: widget.verificationId,
             ));
           }),
@@ -89,7 +89,7 @@ class WAAddCredentialScreenState extends State<WAAddCredentialScreen> {
                       borderRadius: BorderRadius.circular(30)),
                   width: MediaQuery.of(context).size.width,
                   onTap: () {
-                    Get.off(() => WAVerificationScreen(
+                    Get.off(() => VerificationScreen(
                           verificationID: widget.verificationId,
                         ));
                   }),

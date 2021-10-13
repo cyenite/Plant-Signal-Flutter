@@ -1,31 +1,35 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/component/WAMoneyTransferCompeteDialog.dart';
 import 'package:plant_signal/source/component/WASendViaComponent.dart';
+import 'package:plant_signal/source/controllers/db_controller.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WADataGenerator.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 import 'package:plant_signal/source/utils/widgets/slider.dart';
 
-class WASendMoneyViaLoopScreen extends StatefulWidget {
-  static String tag = '/WASendMoneyViaLoopScreen';
+class SendFeedbackScreen extends StatefulWidget {
+  static String tag = '/SendFeedbackScreen';
+
+  final String feedbackCrop;
+
+  SendFeedbackScreen({required this.feedbackCrop});
 
   @override
-  WASendMoneyViaLoopScreenState createState() =>
-      WASendMoneyViaLoopScreenState();
+  SendFeedbackScreenState createState() => SendFeedbackScreenState();
 }
 
-class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
-  TextEditingController amountController =
-      TextEditingController(text: "\u002450");
-  TextEditingController receiptNameController = TextEditingController();
-  TextEditingController accountController = TextEditingController();
+class SendFeedbackScreenState extends State<SendFeedbackScreen> {
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController feedbackController = TextEditingController(text: '');
 
-  FocusNode receiptNameFocusNode = FocusNode();
-  FocusNode accountFocusNode = FocusNode();
+  FocusNode emailFocusNode = FocusNode();
+  FocusNode feedbackFocusNode = FocusNode();
 
   List<WACardModel> sendViaCardList = waSendViaCardList();
   WACardModel selectedCard = WACardModel();
@@ -54,7 +58,7 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text('Give Feedback',
+          title: Text('Give Feedback on ${widget.feedbackCrop} Detection',
               style: boldTextStyle(color: Colors.black, size: 20)),
           leading: Container(
             margin: EdgeInsets.all(8),
@@ -109,7 +113,7 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
                   ),
                 ),
                 16.height,
-                Text("Your name/email", style: boldTextStyle(size: 18))
+                Text("Your email", style: boldTextStyle(size: 18))
                     .paddingLeft(16),
                 16.height,
                 AppTextField(
@@ -118,11 +122,11 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
                       hint: "Enter your email",
                       bgColor: Colors.white,
                       borderColor: Colors.grey),
-                  textFieldType: TextFieldType.NAME,
-                  keyboardType: TextInputType.name,
-                  controller: receiptNameController,
-                  focus: receiptNameFocusNode,
-                  nextFocus: accountFocusNode,
+                  textFieldType: TextFieldType.EMAIL,
+                  keyboardType: TextInputType.emailAddress,
+                  controller: emailController,
+                  focus: emailFocusNode,
+                  nextFocus: feedbackFocusNode,
                 ).paddingOnly(left: 16, right: 16, bottom: 16),
                 Text("Feedback", style: boldTextStyle(size: 18))
                     .paddingLeft(16),
@@ -131,10 +135,10 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
                   autoFocus: false,
                   decoration: waInputDecoration(
                       hint: "Enter feedback to send", bgColor: white),
-                  textFieldType: TextFieldType.NAME,
+                  textFieldType: TextFieldType.OTHER,
                   keyboardType: TextInputType.name,
-                  controller: accountController,
-                  focus: accountFocusNode,
+                  controller: feedbackController,
+                  focus: feedbackFocusNode,
                 ).paddingOnly(left: 16, right: 16),
                 16.height,
                 SliderButton(
@@ -143,7 +147,12 @@ class WASendMoneyViaLoopScreenState extends State<WASendMoneyViaLoopScreen> {
                   dismissible: false,
                   action: () {
                     showInDialog(context, builder: (context) {
-                      return WAMoneyTransferCompleteDialog();
+                      Database().addReview(
+                          crop: widget.feedbackCrop,
+                          feedbackType: selectedCard.sentiment!,
+                          contact: emailController.text,
+                          feedback: feedbackController.text);
+                      return FeedbackCompleteDialog();
                     });
                   },
                   label: Text("Swipe to send feedback", style: boldTextStyle()),

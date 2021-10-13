@@ -2,20 +2,18 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/component/WATransactionComponent.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WADataGenerator.dart';
-import 'package:shimmer/shimmer.dart';
 
-class WAWalletScreen extends StatefulWidget {
-  static String tag = '/WAWalletScreen';
+class CommunityScreen extends StatefulWidget {
+  static String tag = '/CommunityScreen';
 
   @override
-  WAWalletScreenState createState() => WAWalletScreenState();
+  CommunityScreenState createState() => CommunityScreenState();
 }
 
-class WAWalletScreenState extends State<WAWalletScreen> {
+class CommunityScreenState extends State<CommunityScreen> {
   List<WACardModel> walletList = waCardList();
   List<WATransactionModel> transactionList = waTransactionList();
 
@@ -104,16 +102,6 @@ class WAWalletScreenState extends State<WAWalletScreen> {
                             Text('Coming soon', style: boldTextStyle(size: 20)))
                     .paddingLeft(16),
                 16.height,
-                Column(
-                  children: transactionList.map((transactionItem) {
-                    return Shimmer.fromColors(
-                      baseColor: Colors.grey,
-                      highlightColor: Colors.white,
-                      child: WATransactionComponent(
-                          transactionModel: transactionItem),
-                    );
-                  }).toList(),
-                ),
               ],
             ),
           ),

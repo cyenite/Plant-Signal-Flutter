@@ -6,17 +6,17 @@ import 'package:plant_signal/source/controllers/auth_controller.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
-class WAEditProfileScreen extends StatefulWidget {
-  static String tag = '/WAEditProfileScreen';
+class EditProfileScreen extends StatefulWidget {
+  static String tag = '/EditProfileScreen';
   final isEditProfile;
 
-  WAEditProfileScreen({@required this.isEditProfile});
+  EditProfileScreen({@required this.isEditProfile});
 
   @override
-  WAEditProfileScreenState createState() => WAEditProfileScreenState();
+  EditProfileScreenState createState() => EditProfileScreenState();
 }
 
-class WAEditProfileScreenState extends State<WAEditProfileScreen> {
+class EditProfileScreenState extends State<EditProfileScreen> {
   var fullNameController = TextEditingController();
   var contactNumberController = TextEditingController();
 

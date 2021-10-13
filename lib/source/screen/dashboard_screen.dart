@@ -5,33 +5,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WAHomeScreen.dart';
-import 'package:plant_signal/source/screen/WAMyProfileScreen.dart';
-import 'package:plant_signal/source/screen/WAStatisticsScreen.dart';
-import 'package:plant_signal/source/screen/WAWalletScreen.dart';
+import 'package:plant_signal/source/controllers/db_controller.dart';
+import 'package:plant_signal/source/controllers/user_controller.dart';
+import 'package:plant_signal/source/model/session.dart';
+import 'package:plant_signal/source/screen/home_screen.dart';
+import 'package:plant_signal/source/screen/profile_screen.dart';
+import 'package:plant_signal/source/screen/statistics_screen.dart';
+import 'package:plant_signal/source/screen/community_screen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:tflite/tflite.dart';
 
-class WADashboardScreen extends StatefulWidget {
-  static String tag = '/WADashboardScreen';
+class DashboardScreen extends StatefulWidget {
+  static String tag = '/DashboardScreen';
 
   @override
-  WADashboardScreenState createState() => WADashboardScreenState();
+  DashboardScreenState createState() => DashboardScreenState();
 }
 
-class WADashboardScreenState extends State<WADashboardScreen> {
+class DashboardScreenState extends State<DashboardScreen> {
   int _selectedIndex = 0;
   late Image image;
   late String imagePath;
 
   var _pages = <Widget>[
-    WAHomeScreen(),
-    WAStatisticScreen(),
-    WAWalletScreen(),
-    WAMyProfileScreen(),
+    HomeScreen(),
+    StatisticScreen(),
+    CommunityScreen(),
+    ProfileScreen(),
   ];
 
   @override
@@ -51,22 +56,22 @@ class WADashboardScreenState extends State<WADashboardScreen> {
 
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Confirm'),
-        content: new Text('Do you want to exit the app?'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('No'),
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Confirm'),
+            content: new Text('Do you want to exit the app?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: new Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: new Text('Yes'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    )) ??
+        )) ??
         false;
   }
 
@@ -140,6 +145,7 @@ class _MyDialogState extends State<MyDialog> {
   List<dynamic>? _recognitions;
   late DateTime dateTime;
   late double acc;
+  UserController controller = Get.find<UserController>();
 
   String get label => _recognitions!.map((e) => {'${e['label']}'}).toString();
 
@@ -200,6 +206,7 @@ class _MyDialogState extends State<MyDialog> {
                             ),
                             TextButton(
                               onPressed: () async {
+                                controller.captureMode = "Cam".obs;
                                 await getImageFromCamera(ImageSource.camera);
                                 setState(() {});
                               },
@@ -212,6 +219,7 @@ class _MyDialogState extends State<MyDialog> {
                             ),
                             TextButton(
                               onPressed: () async {
+                                controller.captureMode = "Gallery".obs;
                                 await getImageFromCamera(ImageSource.gallery);
                                 setState(() {});
                               },
@@ -327,8 +335,6 @@ class _MyDialogState extends State<MyDialog> {
     }
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -372,6 +378,10 @@ class _MyDialogState extends State<MyDialog> {
   }
 
   void showBottomSheet() {
+    Database().addUserSession(Session(
+        mode: controller.captureMode.value,
+        status: "Successful",
+        time: DateFormat('dd-MM-yyyy – kk:mm').format(DateTime.now())));
     showBarModalBottomSheet(
         context: context,
         builder: (context) {
@@ -716,6 +726,10 @@ class _MyDialogState extends State<MyDialog> {
   }
 
   void showBottomError() {
+    Database().addUserSession(Session(
+        mode: controller.captureMode.value,
+        status: "Failed",
+        time: DateFormat('dd-MM-yyyy – kk:mm').format(DateTime.now())));
     showBarModalBottomSheet(
         context: context,
         builder: (context) {

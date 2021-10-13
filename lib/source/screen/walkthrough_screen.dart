@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
-import 'package:plant_signal/source/screen/WALoginScreen.dart';
+import 'package:plant_signal/source/screen/login_screen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WADataGenerator.dart';
 
-class WAWalkThroughScreen extends StatefulWidget {
-  static String tag = '/WAWalkThroughScreen';
+class WalkThroughScreen extends StatefulWidget {
+  static String tag = '/WalkThroughScreen';
 
   @override
-  WAWalkThroughScreenState createState() => WAWalkThroughScreenState();
+  WalkThroughScreenState createState() => WalkThroughScreenState();
 }
 
-class WAWalkThroughScreenState extends State<WAWalkThroughScreen> {
+class WalkThroughScreenState extends State<WalkThroughScreen> {
   PageController pageController = PageController();
   List<WAWalkThroughModel> list = waWalkThroughList();
 
@@ -51,7 +51,7 @@ class WAWalkThroughScreenState extends State<WAWalkThroughScreen> {
         elevation: 0,
         actions: [
           Text('SKIP', style: boldTextStyle(size: 14)).onTap(() {
-            WALoginScreen().launch(context);
+            LoginScreen().launch(context);
           }).paddingOnly(top: 16, right: 16),
         ],
       ),
@@ -124,7 +124,7 @@ class WAWalkThroughScreenState extends State<WAWalkThroughScreen> {
                     fit: BoxFit.cover),
               ).onTap(() {
                 if (currentPage == 2) {
-                  WALoginScreen().launch(context);
+                  LoginScreen().launch(context);
                 } else {
                   pageController.animateToPage(currentPage + 1,
                       duration: Duration(milliseconds: 300),

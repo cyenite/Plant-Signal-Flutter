@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/controllers/bindings/auth_binding.dart';
 import 'package:plant_signal/source/controllers/user_controller.dart';
-import 'package:plant_signal/source/screen/WASplashScreen.dart';
+import 'package:plant_signal/source/screen/splash_screen.dart';
 
 import 'locale/Languages.dart';
 import 'main/store/AppStore.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         initialBinding: AuthBinding(),
         debugShowCheckedModeBanner: false,
         title: 'Plant Signal',
-        home: WASplashScreen(),
+        home: SplashScreen(),
         theme: !appStore.isDarkModeOn
             ? AppThemeData.lightTheme
             : AppThemeData.darkTheme,

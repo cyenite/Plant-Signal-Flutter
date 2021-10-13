@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
-import 'package:plant_signal/source/screen/WASendMoneyViaLoopScreen.dart';
+import 'package:plant_signal/source/screen/send_feedback_screen.dart';
 
 List<String?> waMonthList = <String?>[
   "Jan",
@@ -29,14 +29,9 @@ List<String?> waYearList = <String?>[
   "2020",
   "2021"
 ];
-List<String?> waOrgList = <String?>[
-  "All",
-  "Water",
-  "Gas",
-  "Electricity",
-  "Internet",
-  "Education",
-  "Landline"
+List<String?> scanStatusList = <String?>[
+  "Successful",
+  "Failed",
 ];
 List<String?> amountList = ["500", "1000", "800"];
 List<String?> overViewList = ["All", "Weekly", "Yearly", "Daily", "Monthly"];
@@ -64,7 +59,7 @@ List<WAWalkThroughModel> waWalkThroughList() {
 List<WACardModel> waCardList() {
   List<WACardModel> cardList = [];
   cardList.add(WACardModel(
-      title: 'Supported Crops',
+      title: 'Detectable Diseases',
       balance: '38',
       cardNumber: 'Last Update: ',
       date: '09/10/2021',
@@ -91,61 +86,73 @@ List<WAOperationsModel> waOperationList() {
     color: Color(0xFF6C56F9),
     title: 'Apples',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Apples",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
     title: 'Cherries',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Cherries",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
     title: 'Grapes',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Grapes",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF26C884),
     title: 'Maize',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Maize",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
     title: 'Tomatoes',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Tomatoes",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF26C884),
     title: 'Potatoes',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Potatoes",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFFF7426),
     title: 'Peach',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Peach",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFF6C56F9),
     title: 'Strawberries',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
-  ));
-  operationModel.add(WAOperationsModel(
-    color: Color(0xFFFF7426),
-    title: 'Maize',
-    image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Stawberries",
+    ),
   ));
   operationModel.add(WAOperationsModel(
     color: Color(0xFFF13452),
     title: 'Pepper',
     image: 'images/plantlogo.png',
-    widget: WASendMoneyViaLoopScreen(),
+    widget: SendFeedbackScreen(
+      feedbackCrop: "Pepper",
+    ),
   ));
   return operationModel;
 }

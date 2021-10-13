@@ -4,14 +4,14 @@ import 'package:plant_signal/source/component/WAOperationComponent.dart';
 import 'package:plant_signal/source/model/WalletAppModel.dart';
 import 'package:plant_signal/source/utils/WADataGenerator.dart';
 
-class WAOperatorsScreen extends StatefulWidget {
-  static String tag = '/WAOperatorsScreen';
+class SupportedCropsScreen extends StatefulWidget {
+  static String tag = '/SupportedCropsScreen';
 
   @override
-  WAOperatorsScreenState createState() => WAOperatorsScreenState();
+  SupportedCropsScreenState createState() => SupportedCropsScreenState();
 }
 
-class WAOperatorsScreenState extends State<WAOperatorsScreen> {
+class SupportedCropsScreenState extends State<SupportedCropsScreen> {
   List<WAOperationsModel> operationsList = waOperationList();
 
   @override
@@ -59,7 +59,10 @@ class WAOperatorsScreenState extends State<WAOperatorsScreen> {
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.only(top: 80),
-        decoration: BoxDecoration(image: DecorationImage(image: AssetImage('images/walletApp/wa_bg.jpg'), fit: BoxFit.cover)),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('images/walletApp/wa_bg.jpg'),
+                fit: BoxFit.cover)),
         child: Container(
           margin: EdgeInsets.only(top: 30),
           decoration: boxDecorationRoundedWithShadow(
@@ -73,7 +76,8 @@ class WAOperatorsScreenState extends State<WAOperatorsScreen> {
               alignment: WrapAlignment.center,
               children: operationsList.map((item) {
                 return Container(
-                  padding: EdgeInsets.only(top: 16, bottom: 8, left: 8, right: 8),
+                  padding:
+                      EdgeInsets.only(top: 16, bottom: 8, left: 8, right: 8),
                   decoration: boxDecorationRoundedWithShadow(16),
                   alignment: AlignmentDirectional.center,
                   width: MediaQuery.of(context).size.width * 0.27,

@@ -3,17 +3,18 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/controllers/user_controller.dart';
-import 'package:plant_signal/source/screen/WAEditProfileScreen.dart';
+import 'package:plant_signal/source/screen/edit_profile_screen.dart';
+import 'package:plant_signal/source/screen/scan_history_screen.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
-class WAMyProfileScreen extends StatefulWidget {
-  static String tag = '/WAMyProfileScreen';
+class ProfileScreen extends StatefulWidget {
+  static String tag = '/ProfileScreen';
 
   @override
-  WAMyProfileScreenState createState() => WAMyProfileScreenState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class WAMyProfileScreenState extends State<WAMyProfileScreen> {
+class ProfileScreenState extends State<ProfileScreen> {
   UserController userController = Get.find<UserController>();
   @override
   void initState() {
@@ -85,10 +86,10 @@ class WAMyProfileScreenState extends State<WAMyProfileScreen> {
                     trailing:
                         Icon(Icons.arrow_right, color: grey.withOpacity(0.5)),
                     onTap: () {
-                      WAEditProfileScreen(isEditProfile: true).launch(context);
+                      EditProfileScreen(isEditProfile: true).launch(context);
                     }),
                 16.height,
-                SettingItemWidget(
+                /*SettingItemWidget(
                     title: 'Manage Detections',
                     decoration: boxDecorationRoundedWithShadow(12),
                     trailing:
@@ -96,24 +97,24 @@ class WAMyProfileScreenState extends State<WAMyProfileScreen> {
                     onTap: () {
                       //
                     }),
-                16.height,
+                16.height,*/
                 SettingItemWidget(
                     title: 'Scan History',
                     decoration: boxDecorationRoundedWithShadow(12),
                     trailing:
                         Icon(Icons.arrow_right, color: grey.withOpacity(0.5)),
                     onTap: () {
-                      //
+                      Get.to(ScanHistoryScreen());
                     }),
                 16.height,
-                SettingItemWidget(
+                /* SettingItemWidget(
                     title: 'Settings',
                     decoration: boxDecorationRoundedWithShadow(12),
                     trailing:
                         Icon(Icons.arrow_right, color: grey.withOpacity(0.5)),
                     onTap: () {
                       //
-                    }),
+                    }),*/
               ],
             ).paddingAll(16),
           ),

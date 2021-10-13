@@ -87,6 +87,20 @@ class Database {
         'mode': sess.mode,
         'status': sess.status,
       });
+      addGlobalSessions(sess);
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<void> addGlobalSessions(Session sess) async {
+    try {
+      await _firestore.collection("scans").doc().set({
+        'time': sess.time,
+        'mode': sess.mode,
+        'status': sess.status,
+      });
     } catch (e) {
       print(e);
       rethrow;
@@ -125,35 +139,5 @@ class Database {
       });
       return retVal;
     });
-  }
-
-  /*Stream<List<TodoModel>> todoStream(String uid) {
-    return _firestore
-        .collection("users")
-        .doc(uid)
-        .collection("todos")
-        .orderBy("dateCreated", descending: true)
-        .snapshots()
-        .map((QuerySnapshot query) {
-      List<TodoModel> retVal = List();
-      query.documents.forEach((element) {
-        retVal.add(TodoModel.fromDocumentSnapshot(element));
-      });
-      return retVal;
-    });
-  }*/
-
-  Future<void> updateTodo(bool newValue, String uid, String todoId) async {
-    try {
-      _firestore
-          .collection("users")
-          .doc(uid)
-          .collection("todos")
-          .doc(todoId)
-          .update({"done": newValue});
-    } catch (e) {
-      print(e);
-      rethrow;
-    }
   }
 }

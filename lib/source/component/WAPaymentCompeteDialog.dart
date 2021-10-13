@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/screen/WADashboardScreen.dart';
+import 'package:plant_signal/source/screen/dashboard_screen.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
@@ -63,7 +63,7 @@ class WAPaymentCompletedDialogState extends State<WAPaymentCompletedDialog> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           text: "Back to Home",
           onTap: () {
-            WADashboardScreen().launch(context, isNewTask: true);
+            DashboardScreen().launch(context, isNewTask: true);
           },
           textStyle: boldTextStyle(color: Colors.white),
         ),

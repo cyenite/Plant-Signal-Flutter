@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:plant_signal/main/utils/shimmer/shimmer.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 
 class WAStatisticsChartComponent extends StatefulWidget {
@@ -62,60 +63,64 @@ class WAStatisticsChartComponentState
     return Container(
       height: 300,
       padding: EdgeInsets.only(top: 16, right: 16, left: 16),
-      child: BarChart(
-        BarChartData(
-          maxY: 20,
-          titlesData: FlTitlesData(
-            show: true,
-            bottomTitles: SideTitles(
-              showTitles: true,
-              margin: 20,
-              getTitles: (double value) {
-                switch (value.toInt()) {
-                  case 0:
-                    return 'Mn';
-                  case 1:
-                    return 'Te';
-                  case 2:
-                    return 'Wd';
-                  case 3:
-                    return 'Tu';
-                  case 4:
-                    return 'Fr';
-                  case 5:
-                    return 'St';
-                  case 6:
-                    return 'Sn';
-                  default:
+      child: Shimmer.fromColors(
+        highlightColor: Colors.white,
+        baseColor: Colors.grey,
+        child: BarChart(
+          BarChartData(
+            maxY: 20,
+            titlesData: FlTitlesData(
+              show: true,
+              bottomTitles: SideTitles(
+                showTitles: true,
+                margin: 20,
+                getTitles: (double value) {
+                  switch (value.toInt()) {
+                    case 0:
+                      return 'Mn';
+                    case 1:
+                      return 'Te';
+                    case 2:
+                      return 'Wd';
+                    case 3:
+                      return 'Tu';
+                    case 4:
+                      return 'Fr';
+                    case 5:
+                      return 'St';
+                    case 6:
+                      return 'Sn';
+                    default:
+                      return '';
+                  }
+                },
+              ),
+              leftTitles: SideTitles(
+                showTitles: true,
+                margin: 16,
+                reservedSize: 14,
+                getTitles: (value) {
+                  if (value == 0) {
+                    return '100k';
+                  } else if (value == 10) {
+                    return '20k';
+                  } else if (value == 19) {
+                    return '25k';
+                  } else if (value == 5) {
+                    return '14k';
+                  } else {
                     return '';
-                }
-              },
+                  }
+                },
+              ),
             ),
-            leftTitles: SideTitles(
-              showTitles: true,
-              margin: 16,
-              reservedSize: 14,
-              getTitles: (value) {
-                if (value == 0) {
-                  return '100k';
-                } else if (value == 10) {
-                  return '20k';
-                } else if (value == 19) {
-                  return '25k';
-                } else if (value == 5) {
-                  return '14k';
-                } else {
-                  return '';
-                }
-              },
+            borderData: FlBorderData(
+              show: false,
             ),
+            barGroups: showingBarGroups,
           ),
-          borderData: FlBorderData(
-            show: false,
-          ),
-          barGroups: showingBarGroups,
-        ),
-      ).center(),
+        ).center(),
+      ),
     ).paddingAll(16).center();
   }
 

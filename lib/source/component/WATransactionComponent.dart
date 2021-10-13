@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import 'package:plant_signal/source/model/WalletAppModel.dart';
+import 'package:plant_signal/source/model/session.dart';
 
 class WATransactionComponent extends StatefulWidget {
   static String tag = '/WATransactionComponent';
 
-  final WATransactionModel? transactionModel;
+  final Session? session;
 
-  WATransactionComponent({this.transactionModel});
+  WATransactionComponent({this.session});
 
   @override
   WATransactionComponentState createState() => WATransactionComponentState();
 }
 
 class WATransactionComponentState extends State<WATransactionComponent> {
+  Color bgColors = Color(0xFF26C884);
   @override
   void initState() {
     super.initState();
@@ -21,7 +22,9 @@ class WATransactionComponentState extends State<WATransactionComponent> {
   }
 
   Future<void> init() async {
-    //
+    if (widget.session!.status == "Failed") {
+      bgColors = Color(0xFFFF7426);
+    }
   }
 
   @override
@@ -46,28 +49,28 @@ class WATransactionComponentState extends State<WATransactionComponent> {
           alignment: Alignment.center,
           decoration: boxDecorationWithRoundedCorners(
             boxShape: BoxShape.circle,
-            backgroundColor: widget.transactionModel!.color!.withOpacity(0.1),
+            backgroundColor: bgColors.withOpacity(0.1),
           ),
           child: ImageIcon(
-            AssetImage('${widget.transactionModel!.image!}'),
+            AssetImage('images/walletApp/wa_voucher.png'),
             size: 24,
-            color: widget.transactionModel!.color!,
+            color: bgColors,
           ),
         ),
         title: RichTextWidget(
           list: [
             TextSpan(
-              text: '${widget.transactionModel!.title!}',
+              text: 'Scanned an image from',
               style: primaryTextStyle(color: Colors.black54, size: 14),
             ),
             TextSpan(
-              text: '\t${widget.transactionModel!.name!}',
+              text: '\t${widget.session!.mode}',
               style: boldTextStyle(size: 14),
             ),
           ],
           maxLines: 1,
         ),
-        subtitle: Text('${widget.transactionModel!.time!}',
+        subtitle: Text('${widget.session!.time}',
             style: primaryTextStyle(color: Colors.black54, size: 14)),
         trailing: Container(
           width: 80,
@@ -75,13 +78,12 @@ class WATransactionComponentState extends State<WATransactionComponent> {
           alignment: Alignment.center,
           decoration: boxDecorationWithRoundedCorners(
             borderRadius: BorderRadius.circular(30),
-            backgroundColor: widget.transactionModel!.color!.withOpacity(0.1),
+            backgroundColor: bgColors.withOpacity(0.1),
           ),
           child: Text(
-            '${widget.transactionModel!.balance!}',
+            '${widget.session!.status}',
             maxLines: 1,
-            style:
-                boldTextStyle(size: 12, color: widget.transactionModel!.color!),
+            style: boldTextStyle(size: 12, color: bgColors),
           ),
         ),
       ),

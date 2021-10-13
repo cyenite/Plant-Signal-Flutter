@@ -4,16 +4,16 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 import 'package:plant_signal/source/utils/WAWidgets.dart';
 
-class WAMoneyTransferCompleteDialog extends StatefulWidget {
-  static String tag = '/WAMoneyTransferCompleteDialog';
+class FeedbackCompleteDialog extends StatefulWidget {
+  static String tag = '/FeedbackCompleteDialog';
 
   @override
-  WAMoneyTransferCompleteDialogState createState() =>
-      WAMoneyTransferCompleteDialogState();
+  FeedbackCompleteDialogState createState() =>
+      FeedbackCompleteDialogState();
 }
 
-class WAMoneyTransferCompleteDialogState
-    extends State<WAMoneyTransferCompleteDialog> {
+class FeedbackCompleteDialogState
+    extends State<FeedbackCompleteDialog> {
   @override
   void initState() {
     super.initState();

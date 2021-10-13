@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:plant_signal/source/controllers/user_controller.dart';
+import 'package:plant_signal/source/model/session.dart';
 import 'package:plant_signal/source/model/user.dart';
-import 'package:plant_signal/source/screen/WAEditProfileScreen.dart';
+import 'package:plant_signal/source/screen/edit_profile_screen.dart';
 
 class Database {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -24,9 +26,9 @@ class Database {
       DocumentSnapshot _doc =
           await _firestore.collection("users").doc(uid).get();
       print("${_doc.data()!.entries}");
-      Get.off(()=>WAEditProfileScreen(
-        isEditProfile: false,
-      ));
+      Get.off(() => EditProfileScreen(
+            isEditProfile: false,
+          ));
       return AppUser.fromDocumentSnapshot(userMap: _doc.data(), id: uid);
     } catch (e) {
       print(e);
@@ -73,6 +75,58 @@ class Database {
       rethrow;
     }
   }
+
+  Future<void> addUserSession(Session sess) async {
+    try {
+      await _firestore
+          .collection("users")
+          .doc(Get.find<UserController>().user.id)
+          .collection("sessions")
+          .add({
+        'time': sess.time,
+        'mode': sess.mode,
+        'status': sess.status,
+      });
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Future<void> addReview(
+      {required String crop,
+      required String feedbackType,
+      required String contact,
+      required String feedback}) async {
+    try {
+      await _firestore.collection("feedbacks").doc().set({
+        'crop': crop,
+        'type': feedbackType,
+        'contact': contact,
+        'feedback': feedback,
+      });
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  Stream<List<Session>> getUserSessions() {
+    return _firestore
+        .collection("users")
+        .doc(Get.find<UserController>().user.id)
+        .collection("sessions")
+        .orderBy("dateCreated", descending: true)
+        .snapshots()
+        .map((QuerySnapshot query) {
+      List<Session> retVal = List.empty(growable: true);
+      query.docs.forEach((element) {
+        retVal.add(Session.fromDocumentSnapshot(element));
+      });
+      return retVal;
+    });
+  }
+
   /*Stream<List<TodoModel>> todoStream(String uid) {
     return _firestore
         .collection("users")

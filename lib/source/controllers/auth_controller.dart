@@ -7,9 +7,9 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/model/user.dart';
-import 'package:plant_signal/source/screen/WAAddCreditionalScreen.dart';
-import 'package:plant_signal/source/screen/WADashboardScreen.dart';
-import 'package:plant_signal/source/screen/WALoginScreen.dart';
+import 'package:plant_signal/source/screen/dashboard_screen.dart';
+import 'package:plant_signal/source/screen/login_screen.dart';
+import 'package:plant_signal/source/screen/policy_screen.dart';
 
 import 'db_controller.dart';
 
@@ -39,7 +39,7 @@ class AuthController extends GetxController {
       );
       if (await Database().createNewUser(_user)) {
         Get.find<UserController>().user = _user;
-        Get.off(()=>WALoginScreen());
+        Get.off(() => LoginScreen());
       }
     } catch (e) {
       Get.snackbar(
@@ -108,7 +108,7 @@ class AuthController extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
         );
         Timer(Duration(seconds: 5), () {
-          Get.off(() => WADashboardScreen());
+          Get.off(() => DashboardScreen());
         });
       },
       verificationFailed: (FirebaseAuthException e) {
@@ -120,7 +120,7 @@ class AuthController extends GetxController {
       },
       codeSent: (String verificationId, int? resendToken) async {
         // Update the UI - wait for the user to enter the SMS code
-        Get.off(()=>WAAddCredentialScreen(verificationId: verificationId));
+        Get.off(() => PolicyScreen(verificationId: verificationId));
       },
       timeout: const Duration(seconds: 60),
       codeAutoRetrievalTimeout: (String verificationId) {},
@@ -128,7 +128,7 @@ class AuthController extends GetxController {
   }
 
   void completePhoneRegistration(String verificationId) async {
-    try{
+    try {
       String smsCode = Get.find<UserController>().otpCode.value;
       // Create a PhoneAuthCredential with the code
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -138,9 +138,8 @@ class AuthController extends GetxController {
       // Sign the user in (or link) with the credential
       await _auth.signInWithCredential(credential);
 
-      Get.off(() => WADashboardScreen());
-    }
-    catch(e){
+      Get.off(() => DashboardScreen());
+    } catch (e) {
       Get.snackbar(
         "Error",
         "Verification code is incorrect",

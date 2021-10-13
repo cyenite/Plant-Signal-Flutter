@@ -42,19 +42,21 @@ dependencies:
   mobx: ^2.0.3
   flutter_mobx: ^2.0.1
   get: 4.1.4
+  provider: ^5.0.0
 
   # UI
   fl_chart: 0.36.1
   dots_indicator: ^2.0.0
   otp_text_field: ^1.1.1
   shimmer: ^2.0.0
+  material_design_icons_flutter: ^5.0.5955-rc.1
+  flutx:
+    path: "D:/App Plans/FlutKit/FlutKit_6.1.0/flutx"
 
   # IMAGES
   cached_network_image: ^3.1.0
 
   # Generate QR Code #
-  qr_flutter: ^4.0.0
-  qr_code_scanner: ^0.5.2
 
 dev_dependencies:
   flutter_test:
@@ -71,3 +73,4 @@ flutter:
     - images/crops/
     - fonts/
     - assets/
+    - assets/social/

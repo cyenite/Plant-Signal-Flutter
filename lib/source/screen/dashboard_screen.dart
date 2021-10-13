@@ -14,6 +14,7 @@ import 'package:plant_signal/source/controllers/db_controller.dart';
 import 'package:plant_signal/source/controllers/user_controller.dart';
 import 'package:plant_signal/source/model/session.dart';
 import 'package:plant_signal/source/screen/home_screen.dart';
+import 'package:plant_signal/source/screen/plant_community/SocialFullApp.dart';
 import 'package:plant_signal/source/screen/profile_screen.dart';
 import 'package:plant_signal/source/screen/statistics_screen.dart';
 import 'package:plant_signal/source/screen/community_screen.dart';
@@ -35,7 +36,7 @@ class DashboardScreenState extends State<DashboardScreen> {
   var _pages = <Widget>[
     HomeScreen(),
     StatisticScreen(),
-    CommunityScreen(),
+    SocialFullApp(),
     ProfileScreen(),
   ];
 

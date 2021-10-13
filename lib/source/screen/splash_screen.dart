@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:plant_signal/source/screen/login_screen.dart';
+import 'package:plant_signal/source/utils/SizeConfig.dart';
 import 'package:plant_signal/source/utils/WAColors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,6 +13,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
+  late ThemeData themeData;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +42,8 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MySize().init(context);
+    themeData = Theme.of(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: WAPrimaryColor,
